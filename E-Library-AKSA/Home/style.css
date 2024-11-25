@@ -17,7 +17,7 @@ body {
 
 /* Navbar Styles */
 .navbar {
-    background-color: #1a73e8;
+    background-color: #0A3697;
     padding: 1.5rem 3rem;
     color: white;
     display: flex;
@@ -87,7 +87,7 @@ body {
 }
 
 .main-menu li a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Dropdown Styles */
@@ -143,7 +143,7 @@ body {
 }
 
 .content h2 {
-    color: #1a73e8;
+    color: #0A3697;
     margin-bottom: 1rem;
 }
 
