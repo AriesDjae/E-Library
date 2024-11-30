@@ -26,7 +26,7 @@
             </div>
             <button type="submit">Login</button>
         </form>
-        <p>Belum punya akun? <a href="signup.html">Create an Account</a></p>
+        <p>Belum punya akun? <a href="Signup.php">Create an Account</a></p>
     </div>
     <!-- <script type="text/javascript" src="validation.js" defer></script> -->
 </body>

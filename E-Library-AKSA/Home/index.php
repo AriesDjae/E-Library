@@ -12,63 +12,139 @@
             <div class="logo">
                 <h1>E-Library</h1>
             </div>
+
+            <!-- Navbar -->
+
             <nav class="navContent">
         <ul class="main-menu">
-            <li><a href="Home/index.php">Beranda</a></li>
+            <li>
+                <form method="post"><button type="submit" name="page" value="home">Home</button></form>
+            </li>
             <li class="dropdown">
-                <a href="resources.php" class="dropbtn">Koleksi</a>
+                <form method="post"><button type="submit" name="page" value="collections" class="dropbtn">Collections</button></form>
                 <div class="dropdown-content">
-                    <a href="catalog.php">Katalog Buku</a>
-                    <a href="new-arrivals.php">Buku Terbaru</a>
-                    <a href="popular-books.php">Buku Terpopuler</a>
-                    <a href="recommended.php">Rekomendasi</a>
-                    <a href="categories.php">Kategori</a>
-                    <div class="sub-dropdown">
-                        <a href="journals.php">Jurnal</a>
-                        <a href="research-papers.php">Karya Ilmiah</a>
-                        <a href="theses.php">Skripsi/Tesis</a>
-                    </div>
+                    <form method="post"><button type="submit" name="page" value="catalog">Book Catalog</button></form>
+                    <form method="post"><button type="submit" name="page" value="new-books">New Books</button></form>
+                    <form method="post"><button type="submit" name="page" value="popular-books">Popular Books</button></form>
+                    <form method="post"><button type="submit" name="page" value="recommendations">Recommendations</button></form>
                 </div>
             </li>
             <li class="dropdown">
-                <a href="services.php" class="dropbtn">Layanan</a>
+                <form method="post"><button type="submit" name="page" value="categories" class="dropbtn">Categories</button></form>
                 <div class="dropdown-content">
-                    <a href="borrowing.php">Peminjaman & Pengembalian</a>
-                    <a href="reading-rooms.php">Ruang Baca</a>
+                    <form method="post"><button type="submit" name="page" value="journals">Journals</button></form>
+                    <form method="post"><button type="submit" name="page" value="scientific-papers">Scientific Papers</button></form>
+                    <form method="post"><button type="submit" name="page" value="thesis">Thesis/Dissertation</button></form>
                 </div>
             </li>
             <li class="dropdown">
-                <a href="information.php" class="dropbtn">Informasi</a>
+                <form method="post"><button type="submit" name="page" value="services" class="dropbtn">Services</button></form>
                 <div class="dropdown-content">
-                    <a href="about.php">Tentang Kami</a>
-                    <a href="contact.php">Kontak</a>
-                    <a href="help.php">Bantuan</a>
+                    <form method="post"><button type="submit" name="page" value="borrow-return">Borrow</button></form>
+                    <form method="post"><button type="submit" name="page" value="return">Return</button></form>
+                    <form method="post"><button type="submit" name="page" value="reading-room">Reading Room</button></form>
                 </div>
             </li>
-            <li><a href="account.php">Akun Saya</a></li>
+            <li class="dropdown">
+                <form method="post"><button type="submit" name="page" value="information" class="dropbtn">Information</button></form>
+                <div class="dropdown-content">
+                    <form method="post"><button type="submit" name="page" value="about">About Us</button></form>
+                    <form method="post"><button type="submit" name="page" value="contact">Contact</button></form>
+                    <form method="post"><button type="submit" name="page" value="help">Help</button></form>
+                </div>
+            </li>
+            <li>
+                <form method="post"><button type="submit" name="page" value="account">My Account</button></form>
+            </li>
         </ul>
-    </nav>
-        </div>
-
-        <div class="search-container">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-            </svg>
-            <input type="text" name="search" id="search" placeholder="Cari buku...">
-        </div>
-
-        <div class="content">
-            <section class="berita">
-                <h2>Berita Terbaru</h2>
-            </section>
-            <section class="rekobuku">
-                <h2>Rekomendasi Buku</h2>
-            </section>
-            <section class="buku">
-                <h2>Koleksi Buku</h2>
-            </section>
-        </div>
+        </nav>
     </div>
+
+    <?php
+$page = isset($_POST['page']) ? $_POST['page'] : 'home'; 
+
+switch ($page) {
+    // Home
+    case 'home':
+        include 'home.php';
+        break;
+
+    // Collections
+    case 'collections':
+        include 'NavContent/resources/resources.php';
+        break;
+    case 'catalog':
+        include 'NavContent/resources/catalog.php';
+        break;
+    case 'new-arrivals':
+        include 'NavContent/resources/new-arrivals.php';
+        break;
+    case 'popular-books':
+        include 'NavContent/resources/popular-books.php';
+        break;
+    case 'recommendations':
+        include 'NavContent/resources/recommendations.php';
+        break;
+    case 'journals':
+        include 'NavContent/resources/journals.php';
+        break;
+    case 'research-papers':
+        include 'NavContent/resources/research-papers.php';
+        break;
+    case 'theses':
+        include 'NavContent/resources/theses.php';
+        break;
+
+    // Services
+    case 'services':
+        include 'NavContent/services/services.php';
+        break;
+    case 'borrowing':
+        include 'NavContent/services/borrowing.php';
+        break;
+    case 'returning':
+        include 'NavContent/services/returning.php';
+        break;
+    case 'reading-room':
+        include 'NavContent/services/reading-room.php';
+        break;
+
+    // Information
+    case 'information':
+        include 'NavContent/information/information.php';
+        break;
+    case 'about':
+        include 'NavContent/information/about.php';
+        break;
+    case 'contact':
+        include 'NavContent/information/contact.php';
+        break;
+    case 'help':
+        include 'NavContent/information/help.php';
+        break;
+
+    // Account
+    case 'account':
+        include 'NavContent/account.php';
+        break;
+
+    // Register/Login
+    case 'login':
+        include 'Register-Login/Login.php';
+        break;
+    case 'signup':
+        include 'Register-Login/Signup.php';
+        break;
+
+    // Default page
+    default:
+        include 'home.php';
+        break;
+}
+?>
+?>
+
+
     <script src="script.js"></script>
 </body>
 </html>

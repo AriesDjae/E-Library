@@ -57,7 +57,7 @@
             </div>
             <button type="submit">Sing Up</button>
         </form>
-        <p>Sudah mempunyai akun? <a href="login.html">login</a></p>
+        <p>Sudah mempunyai akun? <a href="Login.php">login</a></p>
     </div>
     <!-- <script type="text/javascript" src="validation.js" defer></script> -->
 </body>
