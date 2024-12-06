@@ -115,3 +115,43 @@ CREATE TABLE `pengembalian` (
   KEY `FK_Peminjaman_Pengembalian` (`ID_Peminjaman`),
   CONSTRAINT `FK_Peminjaman_Pengembalian` FOREIGN KEY (`ID_Peminjaman`) REFERENCES `peminjaman` (`ID_Peminjaman`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Tabel untuk menyimpan token autentikasi
+CREATE TABLE `auth_tokens` (
+  `id` INT AUTO_INCREMENT NOT NULL,
+  `user_type` ENUM('anggota', 'petugas') NOT NULL,
+  `user_id` INT NOT NULL,
+  `token_hash` VARCHAR(64) NOT NULL,
+  `expiry` DATETIME NOT NULL,
+  `is_valid` BOOLEAN DEFAULT 1,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  INDEX `idx_token` (`token_hash`, `user_type`, `user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Tabel untuk log aktivitas login
+CREATE TABLE `login_logs` (
+  `id` INT AUTO_INCREMENT NOT NULL,
+  `user_type` ENUM('anggota', 'petugas') NOT NULL,
+  `user_id` INT,
+  `email` VARCHAR(255),
+  `ip_address` VARCHAR(45),
+  `user_agent` TEXT,
+  `status` ENUM('success', 'failed') NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Tabel untuk menyimpan session
+CREATE TABLE `user_sessions` (
+    `id` INT AUTO_INCREMENT NOT NULL,
+    `user_type` ENUM('anggota', 'petugas') NOT NULL,
+    `user_id` INT NOT NULL,
+    `session_id` VARCHAR(255) NOT NULL,
+    `last_activity` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `ip_address` VARCHAR(45),
+    `user_agent` TEXT,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `session_id` (`session_id`),
+    INDEX `idx_user` (`user_type`, `user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

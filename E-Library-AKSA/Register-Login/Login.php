@@ -11,12 +11,13 @@
     <div class="wrapper">
         <h1>Login</h1>
         <p id="error-message"></p>
-        <form id="form" method="post">
+        <form id="form" method="post" action="process_login.php">
             <div>
                 <label for="email-input">
                     <span>@</span>
                 </label>
-                <input type="email" name="email" id="email-input" placeholder="Email">
+                <input type="email" name="email" id="email-input" placeholder="Email" 
+                       value="<?php echo isset($_COOKIE['user_email']) ? $_COOKIE['user_email'] : ''; ?>">
             </div>
             <div>
                 <label for="password-input">
@@ -24,8 +25,16 @@
                 </label>
                 <input type="password" name="password" id="password-input" placeholder="Password">
             </div>
+            <select name="user_type" required>
+                <option value="anggota">Anggota</option>
+                <option value="petugas">Petugas</option>
+            </select>
             <button type="submit">Login</button>
         </form>
+        <div>
+            <input type="checkbox" name="remember" id="remember">
+            <label for="remember">Ingatkan saya</label>
+        </div>
         <p>Belum punya akun? <a href="Signup.php">Create an Account</a></p>
     </div>
     <!-- <script type="text/javascript" src="validation.js" defer></script> -->
