@@ -38,6 +38,12 @@ body {
     font-weight: bold;
 }
 
+/* Search Icon */
+.search-wrap {
+    width: 50%;
+    height: 50%;
+}
+
 /* Search Container */
 .search-container {
     display: flex;
@@ -326,4 +332,68 @@ body {
         transform: translateY(-50%) rotate(180deg);
     }
     
+}
+
+/* Navbar responsive styles */
+.bi-list, .bi-x {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .bi-list {
+        display: block;
+    }
+
+    .main-menu {
+        position: fixed;
+        top: 0;
+        right: -250px; /* Sembunyikan menu ke kanan */
+        height: 100vh;
+        width: 250px;
+        background: #0A3697;
+        padding-top: 50px;
+        z-index: 999;
+        transition: 0.5s;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .main-menu .bi-x {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 25px;
+    }
+
+    .main-menu li {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .main-menu button {
+        width: 100%;
+        text-align: left;
+        padding: 12px 20px;
+    }
+
+    .dropdown-content {
+        position: static;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.1);
+        box-shadow: none;
+    }
+
+    .dropdown-content button {
+        color: white !important;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: none; /* Override hover behavior */
+    }
+
+    .dropdown.active .dropdown-content {
+        display: block; /* Show on click instead */
+    }
 }

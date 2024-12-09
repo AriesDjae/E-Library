@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Library Kampus</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
     <div class="container">
@@ -16,51 +17,53 @@
             <!-- Navbar -->
 
             <nav class="navContent">
-        <ul class="main-menu">
-            <li>
-                <form method="post"><button type="submit" name="page" value="home">Home</button></form>
-            </li>
-            <li class="dropdown">
-                <form method="post"><button type="submit" name="page" value="collections" class="dropbtn">Collections</button></form>
-                <div class="dropdown-content">
-                    <form method="post"><button type="submit" name="page" value="catalog">Book Catalog</button></form>
-                    <form method="post"><button type="submit" name="page" value="new-books">New Books</button></form>
-                    <form method="post"><button type="submit" name="page" value="popular-books">Popular Books</button></form>
-                    <form method="post"><button type="submit" name="page" value="recommendations">Recommendations</button></form>
-                </div>
-            </li>
-            <li class="dropdown">
-                <form method="post"><button type="submit" name="page" value="categories" class="dropbtn">Categories</button></form>
-                <div class="dropdown-content">
-                    <form method="post"><button type="submit" name="page" value="journals">Journals</button></form>
-                    <form method="post"><button type="submit" name="page" value="scientific-papers">Scientific Papers</button></form>
-                    <form method="post"><button type="submit" name="page" value="thesis">Thesis/Dissertation</button></form>
-                </div>
-            </li>
-            <li class="dropdown">
-                <form method="post"><button type="submit" name="page" value="services" class="dropbtn">Services</button></form>
-                <div class="dropdown-content">
-                    <form method="post"><button type="submit" name="page" value="borrow-return">Borrow</button></form>
-                    <form method="post"><button type="submit" name="page" value="return">Return</button></form>
-                    <form method="post"><button type="submit" name="page" value="reading-room">Reading Room</button></form>
-                </div>
-            </li>
-            <li class="dropdown">
-                <form method="post"><button type="submit" name="page" value="information" class="dropbtn">Information</button></form>
-                <div class="dropdown-content">
-                    <form method="post"><button type="submit" name="page" value="about">About Us</button></form>
-                    <form method="post"><button type="submit" name="page" value="contact">Contact</button></form>
-                    <form method="post"><button type="submit" name="page" value="help">Help</button></form>
-                </div>
-            </li>
-            <li>
-                <form method="post"><button type="submit" name="page" value="account">My Account</button></form>
-            </li>
-        </ul>
-        </nav>
-    </div>
+                <i class="bi bi-list" onclick="openmenu()"></i>
+                <ul class="main-menu">
+                    <i class="bi bi-x" onclick="closemenu()"></i>
+                    <li>
+                        <form method="post"><button type="submit" name="page" value="home">Home</button></form>
+                    </li>
+                    <li class="dropdown">
+                        <form method="post"><button type="submit" name="page" value="collections" class="dropbtn">Collections</button></form>
+                        <div class="dropdown-content">
+                            <form method="post"><button type="submit" name="page" value="catalog">Book Catalog</button></form>
+                            <form method="post"><button type="submit" name="page" value="new-books">New Books</button></form>
+                            <form method="post"><button type="submit" name="page" value="popular-books">Popular Books</button></form>
+                            <form method="post"><button type="submit" name="page" value="recommendations">Recommendations</button></form>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <form method="post"><button type="submit" name="page" value="categories" class="dropbtn">Categories</button></form>
+                        <div class="dropdown-content">
+                            <form method="post"><button type="submit" name="page" value="journals">Journals</button></form>
+                            <form method="post"><button type="submit" name="page" value="scientific-papers">Scientific Papers</button></form>
+                            <form method="post"><button type="submit" name="page" value="thesis">Thesis/Dissertation</button></form>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <form method="post"><button type="submit" name="page" value="services" class="dropbtn">Services</button></form>
+                        <div class="dropdown-content">
+                            <form method="post"><button type="submit" name="page" value="borrow-return">Borrow</button></form>
+                            <form method="post"><button type="submit" name="page" value="return">Return</button></form>
+                            <form method="post"><button type="submit" name="page" value="reading-room">Reading Room</button></form>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <form method="post"><button type="submit" name="page" value="information" class="dropbtn">Information</button></form>
+                        <div class="dropdown-content">
+                            <form method="post"><button type="submit" name="page" value="about">About Us</button></form>
+                            <form method="post"><button type="submit" name="page" value="contact">Contact</button></form>
+                            <form method="post"><button type="submit" name="page" value="help">Help</button></form>
+                        </div>
+                    </li>
+                    <li>
+                        <form method="post"><button type="submit" name="page" value="account">My Account</button></form>
+                    </li>
+                </ul>   
+            </nav>
+        </div>
 
-    <?php
+        <?php
 $page = isset($_POST['page']) ? $_POST['page'] : 'home'; 
 
 switch ($page) {
