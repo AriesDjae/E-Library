@@ -109,7 +109,7 @@ switch ($page) {
         include 'NavContent/services/returning.php';
         break;
     case 'reading-room':
-        include 'NavContent/services/reading-room.php';
+        include 'C:\xampp\htdocs/NavContent/services/reading-rooms.php';
         break;
 
     // Information
