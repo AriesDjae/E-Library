@@ -2,6 +2,8 @@
 -- version 5.2.1
 -- Host: 127.0.0.1
 
+-- Hapus tabel jika sudah ada
+DROP TABLE IF EXISTS `reading_room_bookings`;
 DROP TABLE IF EXISTS `pengembalian`;
 DROP TABLE IF EXISTS `peminjaman`;
 DROP TABLE IF EXISTS `transaksi_ebook`;
@@ -10,13 +12,18 @@ DROP TABLE IF EXISTS `buku`;
 DROP TABLE IF EXISTS `anggota`;
 DROP TABLE IF EXISTS `kategori`;
 DROP TABLE IF EXISTS `petugas`;
+DROP TABLE IF EXISTS `auth_tokens`;
+DROP TABLE IF EXISTS `login_logs`;
+DROP TABLE IF EXISTS `user_sessions`;
 
+-- Tabel kategori
 CREATE TABLE `kategori` (
   `ID_Kategori` INT AUTO_INCREMENT NOT NULL,
   `Nama_Kategori` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`ID_Kategori`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- Tabel anggota
 CREATE TABLE `anggota` (
   `ID_Anggota` INT AUTO_INCREMENT NOT NULL,
   `Nama` VARCHAR(100) NOT NULL,
@@ -31,6 +38,7 @@ CREATE TABLE `anggota` (
   PRIMARY KEY (`ID_Anggota`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- Tabel petugas
 CREATE TABLE `petugas` (
   `ID_Petugas` INT AUTO_INCREMENT NOT NULL,
   `Nama_Petugas` VARCHAR(100) NOT NULL,
@@ -43,6 +51,7 @@ CREATE TABLE `petugas` (
   PRIMARY KEY (`ID_Petugas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- Tabel buku
 CREATE TABLE `buku` (
   `ID_Buku` INT AUTO_INCREMENT NOT NULL,
   `ID_Kategori` INT NOT NULL,
@@ -60,6 +69,7 @@ CREATE TABLE `buku` (
   CONSTRAINT `FK_Kategori_Buku` FOREIGN KEY (`ID_Kategori`) REFERENCES `kategori` (`ID_Kategori`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- Tabel ebook
 CREATE TABLE `ebook` (
   `ID_Access` INT AUTO_INCREMENT NOT NULL,
   `ID_Buku` INT NOT NULL,
@@ -72,6 +82,7 @@ CREATE TABLE `ebook` (
   CONSTRAINT `FK_Buku_Ebook` FOREIGN KEY (`ID_Buku`) REFERENCES `buku` (`ID_Buku`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- Tabel transaksi ebook
 CREATE TABLE `transaksi_ebook` (
   `ID_Transaksi` INT AUTO_INCREMENT NOT NULL,
   `ID_Anggota` INT NOT NULL,
@@ -86,6 +97,7 @@ CREATE TABLE `transaksi_ebook` (
   CONSTRAINT `FK_Buku_TransaksiEbook` FOREIGN KEY (`ID_Buku`) REFERENCES `buku` (`ID_Buku`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- Tabel peminjaman
 CREATE TABLE `peminjaman` (
   `ID_Peminjaman` INT AUTO_INCREMENT NOT NULL,
   `ID_Anggota` INT NOT NULL,
@@ -105,6 +117,7 @@ CREATE TABLE `peminjaman` (
   CONSTRAINT `FK_Petugas_Peminjaman` FOREIGN KEY (`ID_Petugas`) REFERENCES `petugas` (`ID_Petugas`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- Tabel pengembalian
 CREATE TABLE `pengembalian` (
   `ID_Pengembalian` INT AUTO_INCREMENT NOT NULL,
   `ID_Peminjaman` INT NOT NULL,
@@ -114,6 +127,20 @@ CREATE TABLE `pengembalian` (
   PRIMARY KEY (`ID_Pengembalian`),
   KEY `FK_Peminjaman_Pengembalian` (`ID_Peminjaman`),
   CONSTRAINT `FK_Peminjaman_Pengembalian` FOREIGN KEY (`ID_Peminjaman`) REFERENCES `peminjaman` (`ID_Peminjaman`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Tabel pemesanan ruangan membaca
+CREATE TABLE `reading_room_bookings` (
+  `ID_Booking` INT AUTO_INCREMENT NOT NULL,
+  `ID_Room` VARCHAR(50) NOT NULL,
+  `ID_Anggota` INT NOT NULL,
+  `Booking_Date` DATE NOT NULL,
+  `Start_Time` TIME NOT NULL,
+  `End_Time` TIME NOT NULL,
+  `Status` ENUM('Pending', 'Confirmed', 'Cancelled') DEFAULT 'Pending',
+  PRIMARY KEY (`ID_Booking`),
+  KEY `FK_Anggota_Booking` (`ID_Anggota`),
+  CONSTRAINT `FK_Anggota_Booking` FOREIGN KEY (`ID_Anggota`) REFERENCES `anggota` (`ID_Anggota`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Tabel untuk menyimpan token autentikasi
