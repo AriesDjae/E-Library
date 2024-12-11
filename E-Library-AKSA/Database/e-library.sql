@@ -13,7 +13,6 @@ DROP TABLE IF EXISTS `anggota`;
 DROP TABLE IF EXISTS `kategori`;
 DROP TABLE IF EXISTS `petugas`;
 DROP TABLE IF EXISTS `auth_tokens`;
-DROP TABLE IF EXISTS `login_logs`;
 DROP TABLE IF EXISTS `user_sessions`;
 
 -- Tabel kategori
@@ -154,19 +153,6 @@ CREATE TABLE `auth_tokens` (
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   INDEX `idx_token` (`token_hash`, `user_type`, `user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Tabel untuk log aktivitas login
-CREATE TABLE `login_logs` (
-  `id` INT AUTO_INCREMENT NOT NULL,
-  `user_type` ENUM('anggota', 'petugas') NOT NULL,
-  `user_id` INT,
-  `email` VARCHAR(255),
-  `ip_address` VARCHAR(45),
-  `user_agent` TEXT,
-  `status` ENUM('success', 'failed') NOT NULL,
-  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Tabel untuk menyimpan session
