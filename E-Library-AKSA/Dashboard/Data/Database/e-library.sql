@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< HEAD:E-Library-AKSA/Database/e-library.sql
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
@@ -209,6 +210,8 @@ CREATE TABLE `user_sessions` (
     INDEX `idx_user` (`user_type`, `user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 =======
+=======
+>>>>>>> ca8eb376975d0b8b6fe692201b6343e0c57958db
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- Host: 127.0.0.1
@@ -378,5 +381,9 @@ CREATE TABLE `user_sessions` (
     PRIMARY KEY (`id`),
     UNIQUE KEY `session_id` (`session_id`),
     INDEX `idx_user` (`user_type`, `user_id`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 >>>>>>> ca8eb376975d0b8b6fe692201b6343e0c57958db:E-Library-AKSA/Dashboard/Data/Database/e-library.sql
+=======
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+>>>>>>> ca8eb376975d0b8b6fe692201b6343e0c57958db
