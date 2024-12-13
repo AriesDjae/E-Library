@@ -24,6 +24,9 @@ class SessionManager {
         $sql = "INSERT INTO user_sessions (user_type, user_id, session_id, ip_address, user_agent) 
                 VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
+        if ($stmt === false) {
+            die("Kesalahan dalam persiapan statement: " . $this->conn->error);
+        }
         $stmt->bind_param("sisss", 
             $user_type, 
             $user_id, 
@@ -31,7 +34,9 @@ class SessionManager {
             $_SERVER['REMOTE_ADDR'],
             $_SERVER['HTTP_USER_AGENT']
         );
-        $stmt->execute();
+        if (!$stmt->execute()) {
+            die("Kesalahan saat mengeksekusi query: " . $stmt->error);
+        }
         
         // Set session variables
         $_SESSION['user_type'] = $user_type;

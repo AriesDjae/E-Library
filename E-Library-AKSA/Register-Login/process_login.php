@@ -2,26 +2,19 @@
 require_once 'auth.php';
 require_once 'db_config.php';
 require_once 'SessionManager.php';
+// Koneksi ke database
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'e-library';
-
-$conn = new mysqli($host, $username, $password, $database);
-
+// Periksa koneksi
 if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
-} else {
-    echo "Koneksi berhasil!";
 }
 
-
-
+// Lanjutkan dengan proses login
 $auth = new Auth($conn);
 $sessionManager = new SessionManager($conn);
 
+// Proses login
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $password = $_POST['password'];

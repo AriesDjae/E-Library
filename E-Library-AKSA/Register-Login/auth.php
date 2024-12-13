@@ -19,8 +19,13 @@ class Auth {
         // Simpan token ke database
         $sql = "INSERT INTO auth_tokens (user_type, user_id, token_hash, expiry) VALUES (?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
+        if ($stmt === false) {
+            die("Kesalahan dalam persiapan statement: " . $this->conn->error);
+        }
         $stmt->bind_param("siss", $user_type, $user_id, $token_hash, date('Y-m-d H:i:s', $expiry));
-        $stmt->execute();
+        if (!$stmt->execute()) {
+            die("Kesalahan saat mengeksekusi query: " . $stmt->error);
+        }
         
         // Set cookies
         if($remember) {
