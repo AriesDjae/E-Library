@@ -7,6 +7,7 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
+    background: linear-gradient(180deg, rgba(227, 233, 255, 0) 0%, #E3E9FF 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
 }
 
 .container {
@@ -17,15 +18,16 @@ body {
 
 /* Navbar Styles */
 .navbar {
+    position: fixed;
     background-color: #0A3697;
     padding: 1.5rem 3rem;
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
     top: 0;
-    z-index: 100;
+    width: 100%;
+    z-index: 1;
 }
 
 .logo {
@@ -44,16 +46,44 @@ body {
     height: 50%;
 }
 
+.text {
+    color: black;
+    max-width: 600px;
+    font-size: 1.8rem; /* Menambahkan ukuran font yang lebih besar */
+    margin: 2.5rem 0 2.5rem auto; /* Changed: removed 'auto' from left margin */
+    margin-right: 40px; /* Added: right margin */
+    margin-left: auto;
+    margin-top: 180px; /* Added: increased top margin */
+    line-height: 1.2; /* Mengatur jarak antar baris */
+}
+
+.hero-image {
+    position: absolute;
+    left: 100px;      
+    top: 20px;
+    width: 630px;     /* Mengubah ukuran dari 600px */
+    height: 630px;    /* Mengubah ukuran dari 600px */
+    z-index: -1;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
 /* Search Container */
 .search-container {
     display: flex;
     align-items: center;
-    background: white;
+    background: #CBD2EF;
     padding: 0.8rem;
-    border-radius: 24px;
+    border-radius: 50px;
     max-width: 600px;
-    margin: 2.5rem auto;
+    margin: 2.5rem 0 2.5rem auto; /* Changed: removed 'auto' from left margin */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-right: 50px; /* Added: right margin */
+    margin-top: 60px; /* Added: increased top margin */
 }
 
 .search-container svg {
@@ -69,6 +99,7 @@ body {
     width: 100%;
     padding: 0.5rem;
     font-size: 1rem;
+    background: #CBD2EF; /* Added this line to match container background */
 }
 
 /* Navigation Menu - Updated Styles */
@@ -180,6 +211,7 @@ body {
 /* Content Section */
 .content {
     padding: 2rem;
+    margin-top: 100px; /* Added: adjust content position */
 }
 
 .content section {
@@ -238,7 +270,7 @@ body {
 
     .search-container {
         width: 90%;
-        margin: 1.5rem auto;
+        margin: 100px auto 1.5rem auto;
     }
 
     .search-container input {
