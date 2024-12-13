@@ -3,7 +3,22 @@ require_once 'auth.php';
 require_once 'db_config.php';
 require_once 'SessionManager.php';
 
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+$host = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'e-library';
+
+$conn = new mysqli($host, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+} else {
+    echo "Koneksi berhasil!";
+}
+
+
+
 $auth = new Auth($conn);
 $sessionManager = new SessionManager($conn);
 

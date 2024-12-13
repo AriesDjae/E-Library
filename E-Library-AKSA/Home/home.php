@@ -23,8 +23,8 @@
         </div>
 
         <div class="content">
-            <section class="berita">
-                <h2>Berita Terbaru</h2>
+            <section class="populer">
+                <h2>Buku Populer</h2>
             </section>
             <section class="rekobuku">
                 <h2>Rekomendasi Buku</h2>
