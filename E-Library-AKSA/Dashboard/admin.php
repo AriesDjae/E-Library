@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['admin_logged_in'])) {
-    header("Location: ../Login.php");
+    header("Location: ../Register-Login/Login.php");
     exit();
 }
 ?>
@@ -88,7 +88,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
                     <div class="number">
                         <?php
                         include "../config/connection.php";
-                        $query = "SELECT COUNT(*) as total FROM catalog";
+                        $query = "SELECT COUNT(*) as total FROM buku";
                         $result = mysqli_query($conn, $query);
                         $data = mysqli_fetch_assoc($result);
                         echo $data['total'];
@@ -118,7 +118,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
                     <i class='bx bxs-bookmark'></i>
                     <div class="number">
                         <?php
-                        $query = "SELECT COUNT(*) as total FROM borrowing WHERE status='dipinjam'";
+                        $query = "SELECT COUNT(*) as total FROM peminjaman WHERE Status_Peminjaman='Dipinjam'";
                         $result = mysqli_query($conn, $query);
                         $data = mysqli_fetch_assoc($result);
                         echo $data['total'];
