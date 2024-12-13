@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1.1">
 </head>
 <body>
 
 <div class="text">
     <p>let's make the best investments</p>
-    <h1>There is no friend as loyal</h1>
-    <h2>as a book</h2>
+    <h1>There is no</h1>
+    <h1>friend as loyal</h1>
+    <h1>as a book</h1>
     <p1>Read. Listen. Learn. Repeat</p1>
 </div>
+
+<div class="hero-image">
+        <img src="Group 4.svg" alt="Hero Image">
+    </div>
 
 <div class="search-container">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -23,8 +28,8 @@
         </div>
 
         <div class="content">
-            <section class="populer">
-                <h2>Buku Populer</h2>
+            <section class="berita">
+                <h2>Berita Terbaru</h2>
             </section>
             <section class="rekobuku">
                 <h2>Rekomendasi Buku</h2>
