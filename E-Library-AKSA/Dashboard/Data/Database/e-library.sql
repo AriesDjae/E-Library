@@ -87,3 +87,42 @@ CREATE TABLE IF NOT EXISTS `pengembalian` (
   KEY `FK_Peminjaman_Pengembalian` (`ID_Peminjaman`),
   CONSTRAINT `FK_Peminjaman_Pengembalian` FOREIGN KEY (`ID_Peminjaman`) REFERENCES `peminjaman` (`ID_Peminjaman`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Tabel ruang baca
+CREATE TABLE IF NOT EXISTS reading_room (
+  ID_Room INT AUTO_INCREMENT NOT NULL,
+  Nama_Ruang VARCHAR(100) NOT NULL UNIQUE,
+  Kapasitas INT NOT NULL DEFAULT 10,
+  Status ENUM('Tersedia', 'Dipesan') NOT NULL DEFAULT 'Tersedia',
+  PRIMARY KEY (ID_Room)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Tabel pemesanan ruang baca
+CREATE TABLE IF NOT EXISTS reading_room_booking (
+  ID_Booking INT AUTO_INCREMENT NOT NULL,
+  ID_Room INT NOT NULL,
+  ID_Anggota INT NOT NULL,
+  Tanggal_Booking DATE NOT NULL DEFAULT CURRENT_DATE,
+  Waktu_Mulai TIME NOT NULL,
+  Waktu_Selesai TIME NOT NULL,
+  Status_Booking ENUM('Dipesan', 'Selesai', 'Dibatalkan') NOT NULL DEFAULT 'Dipesan',
+  PRIMARY KEY (ID_Booking),
+  KEY FK_Room_Booking (ID_Room),
+  KEY FK_User_Booking (ID_Anggota),
+  CONSTRAINT FK_Room_Booking FOREIGN KEY (ID_Room) REFERENCES reading_room (ID_Room) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FK_User_Booking FOREIGN KEY (ID_Anggota) REFERENCES anggota (ID_Anggota) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Tambahkan ruangan secara otomatis
+INSERT IGNORE INTO reading_room (Nama_Ruang, Kapasitas, Status)
+VALUES
+('Ruang Baca 1', 10, 'Tersedia'),
+('Ruang Baca 2', 10, 'Tersedia'),
+('Ruang Baca 3', 10, 'Tersedia'),
+('Ruang Baca 4', 10, 'Tersedia'),
+('Ruang Baca 5', 10, 'Tersedia'),
+('Ruang Baca 6', 10, 'Tersedia'),
+('Ruang Baca 7', 10, 'Tersedia'),
+('Ruang Baca 8', 10, 'Tersedia'),
+('Ruang Baca 9', 10, 'Tersedia'),
+('Ruang Baca 10', 10, 'Tersedia');
