@@ -1,11 +1,9 @@
 <?php
-// Koneksi ke database
-$servername = "localhost";
-$username = "username";
-$password = "password";
-$dbname = "e_library";
 
-$conn = new mysql('localhost', 'root', '', 'e_library');
+// Koneksi ke database
+include "db_config.php";
+
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 // Periksa koneksi
 if ($conn->connect_error) {

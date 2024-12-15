@@ -5,10 +5,10 @@ session_start();
 session_destroy();
 
 // Hapus cookies
-setcookie("user_email", "", time() - 3600, "/");
-setcookie("user_id", "", time() - 3600, "/");
+setcookie(name: "user_email", value: "", expires_or_options: time() - 3600, path: "/");
+setcookie(name: "user_id", value: "", expires_or_options: time() - 3600, path: "/");
 
 // Redirect ke halaman login
-header("Location: Login.php");
+header(header: "Location: Login.php");
 exit();
 ?>

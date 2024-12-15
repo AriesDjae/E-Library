@@ -25,10 +25,6 @@
                 </label>
                 <input type="password" name="password" id="password-input" placeholder="Password">
             </div>
-            <select name="user_type" required>
-                <option value="anggota">Anggota</option>
-                <option value="petugas">Petugas</option>
-            </select>
             <button type="submit">Login</button>
         </form>
         <div>

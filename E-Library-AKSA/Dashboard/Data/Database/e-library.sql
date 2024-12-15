@@ -29,7 +29,6 @@ CREATE TABLE IF NOT EXISTS `anggota` (
 CREATE TABLE IF NOT EXISTS `petugas` (
   `ID_Petugas` INT AUTO_INCREMENT NOT NULL,
   `Nama_Petugas` VARCHAR(100) NOT NULL,
-  `Jabatan` VARCHAR(50) NOT NULL,
   `No_Telepon` VARCHAR(15) NOT NULL,
   `Status` ENUM('Aktif', 'Nonaktif') NOT NULL,
   `Username` VARCHAR(100) NOT NULL UNIQUE,
@@ -48,7 +47,6 @@ CREATE TABLE IF NOT EXISTS `buku` (
   `Tahun_Terbit` YEAR NOT NULL,
   `Lokasi_Rak` VARCHAR(50),
   `Stok` INT NOT NULL DEFAULT 0,
-  `ISBN` VARCHAR(20) NOT NULL,
   `Deskripsi` TEXT,
   `Cover_Image` VARCHAR(255),
   PRIMARY KEY (`ID_Buku`),
@@ -89,32 +87,32 @@ CREATE TABLE IF NOT EXISTS `pengembalian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Tabel ruang baca
-CREATE TABLE IF NOT EXISTS reading_room (
-  ID_Room INT AUTO_INCREMENT NOT NULL,
-  Nama_Ruang VARCHAR(100) NOT NULL UNIQUE,
-  Kapasitas INT NOT NULL DEFAULT 10,
-  Status ENUM('Tersedia', 'Dipesan') NOT NULL DEFAULT 'Tersedia',
-  PRIMARY KEY (ID_Room)
+CREATE TABLE IF NOT EXISTS `reading_room` (
+  `ID_Room` INT AUTO_INCREMENT NOT NULL,
+  `Nama_Ruang` VARCHAR(100) NOT NULL UNIQUE,
+  `Kapasitas` INT NOT NULL DEFAULT 10,
+  `Status` ENUM('Tersedia', 'Dipesan') NOT NULL DEFAULT 'Tersedia',
+  PRIMARY KEY (`ID_Room`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Tabel pemesanan ruang baca
-CREATE TABLE IF NOT EXISTS reading_room_booking (
-  ID_Booking INT AUTO_INCREMENT NOT NULL,
-  ID_Room INT NOT NULL,
-  ID_Anggota INT NOT NULL,
-  Tanggal_Booking DATE NOT NULL DEFAULT CURRENT_DATE,
-  Waktu_Mulai TIME NOT NULL,
-  Waktu_Selesai TIME NOT NULL,
-  Status_Booking ENUM('Dipesan', 'Selesai', 'Dibatalkan') NOT NULL DEFAULT 'Dipesan',
-  PRIMARY KEY (ID_Booking),
-  KEY FK_Room_Booking (ID_Room),
-  KEY FK_User_Booking (ID_Anggota),
-  CONSTRAINT FK_Room_Booking FOREIGN KEY (ID_Room) REFERENCES reading_room (ID_Room) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT FK_User_Booking FOREIGN KEY (ID_Anggota) REFERENCES anggota (ID_Anggota) ON DELETE CASCADE ON UPDATE CASCADE
+CREATE TABLE IF NOT EXISTS `reading_room_booking` (
+  `ID_Booking` INT AUTO_INCREMENT NOT NULL,
+  `ID_Room` INT NOT NULL,
+  `ID_Anggota` INT NOT NULL,
+  `Tanggal_Booking` DATE NOT NULL DEFAULT CURRENT_DATE,
+  `Waktu_Mulai` TIME NOT NULL,
+  `Waktu_Selesai` TIME NOT NULL,
+  `Status_Booking` ENUM('Dipesan', 'Selesai', 'Dibatalkan') NOT NULL DEFAULT 'Dipesan',
+  PRIMARY KEY (`ID_Booking`),
+  KEY `FK_Room_Booking` (`ID_Room`),
+  KEY `FK_User_Booking` (`ID_Anggota`),
+  CONSTRAINT `FK_Room_Booking` FOREIGN KEY (`ID_Room`) REFERENCES `reading_room` (`ID_Room`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_User_Booking` FOREIGN KEY (`ID_Anggota`) REFERENCES `anggota` (`ID_Anggota`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Tambahkan ruangan secara otomatis
-INSERT IGNORE INTO reading_room (Nama_Ruang, Kapasitas, Status)
+INSERT IGNORE INTO `reading_room` (`Nama_Ruang`, `Kapasitas`, `Status`)
 VALUES
 ('Ruang Baca 1', 10, 'Tersedia'),
 ('Ruang Baca 2', 10, 'Tersedia'),
