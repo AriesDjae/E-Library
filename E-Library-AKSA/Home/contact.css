@@ -53,7 +53,7 @@
 /* Styling untuk iframe peta */
 .contact-page iframe {
     width: 100%;
-    height: 300px;
+    height: 600px;
     border-radius: 8px;
     margin-top: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -77,3 +77,5 @@
         margin-top: 80px; /* Sesuaikan dengan navbar */
     }
 }
+
+

@@ -29,9 +29,7 @@
         </div>
 
         <div class="content">
-            <section class="berita">
-                <h2>Berita Terbaru</h2>
-            </section>
+
             <section class="rekobuku">
                 <h2>Rekomendasi Buku</h2>
             </section>
@@ -69,15 +67,14 @@
         </div>
         <!-- Peta Lokasi -->
         <h2>Our Location</h2>
-        <iframe 
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.8618779354583!2d110.355398!3d-7.747033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59b3a4b6186f%3A0xe77229c66ad324c1!2sUniversitas%20Islam%20Indonesia!5e0!3m2!1sid!2sid!4v1702655000000!5m2!1sid!2sid" 
-    width="600" 
-    height="450" 
-    style="border:0;" 
-    allowfullscreen="" 
+        <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.8710037644193!2d110.357049!3d-7.749987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59b3a4b6186f%3A0x1209ae547c8f3d0d!2sUniversitas%20Islam%20Indonesia!5e0!3m2!1sid!2sid!4v1702657000000!5m2!1sid!2sid"
+    width="600"
+    height="450"
+    style="border:0;"
+    allowfullscreen=""
     loading="lazy">
 </iframe>
-
 
     </div>
 </body>
