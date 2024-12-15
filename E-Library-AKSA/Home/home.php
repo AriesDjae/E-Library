@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="stylesheet" href="contact.css?v=1.1">
 </head>
 <body>
 
@@ -38,6 +39,46 @@
                 <h2>Koleksi Buku</h2>
             </section>
         </div>
+    </div>
+    <div class="contact-page">
+        <h2>Contact Us</h2>
+        <div class="contact-columns">
+            <!-- Kolom 1 -->
+            <div class="column">
+                <h3>⚙ Jam Buka</h3>
+                <p>Senin - Jumat: 08.00 - 18.00 WIB</p>
+                <p>Sabtu: 09.00 - 16.00 WIB</p>
+                <p>Minggu: Tutup</p>
+            </div>
+            <!-- Kolom 2 -->
+            <div class="column">
+                <h3>🏠 Alamat</h3>
+                <p>Perpustakaan Kampus<br> Gedung Crystal of Knowledge<br> Kampus , DIY</p>
+            </div>
+            <!-- Kolom 3 -->
+            <div class="column">
+                <h3>✉ Kontak</h3>
+                <p>Telp: 021-123456</p>
+                <p>Email: <a href="mailto:library@ui.ac.id">library@k.ac.id</a></p>
+            </div>
+            <!-- Kolom 4 -->
+            <div class="column flash">
+                <h3>💡 Flash</h3>
+                <p>"Edmun Burke - Aku rasa, televisi itu sangat mendidik."</p>
+            </div>
+        </div>
+        <!-- Peta Lokasi -->
+        <h2>Our Location</h2>
+        <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.8618779354583!2d110.355398!3d-7.747033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59b3a4b6186f%3A0xe77229c66ad324c1!2sUniversitas%20Islam%20Indonesia!5e0!3m2!1sid!2sid!4v1702655000000!5m2!1sid!2sid" 
+    width="600" 
+    height="450" 
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy">
+</iframe>
+
+
     </div>
 </body>
 </html>
