@@ -20,15 +20,17 @@ class Auth {
         $sql = "INSERT INTO auth_tokens (user_type, user_id, token_hash, expiry) VALUES (?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
         if ($stmt === false) {
-            die("Kesalahan dalam persiapan statement: " . $this->conn->error);
+            error_log("Kesalahan dalam persiapan statement: " . $this->conn->error);
+            return false;
         }
         $stmt->bind_param("siss", $user_type, $user_id, $token_hash, date('Y-m-d H:i:s', $expiry));
         if (!$stmt->execute()) {
-            die("Kesalahan saat mengeksekusi query: " . $stmt->error);
+            error_log("Kesalahan saat mengeksekusi query: " . $stmt->error);
+            return false;
         }
         
         // Set cookies
-        if($remember) {
+        if ($remember) {
             setcookie("auth_token", $token, $expiry, "/", "", true, true);
             setcookie("user_type", $user_type, $expiry, "/", "", true, true);
             setcookie("user_id", $user_id, $expiry, "/", "", true, true);
@@ -37,56 +39,41 @@ class Auth {
         }
         
         // Set session
+        session_regenerate_id(true); // Regenerasi ID sesi
         $_SESSION['user_type'] = $user_type;
         $_SESSION['user_id'] = $user_id;
         $_SESSION['email'] = $user_data['Email'];
         $_SESSION['nama'] = $user_type === 'petugas' ? $user_data['Nama_Petugas'] : $user_data['Nama'];
         $_SESSION['status'] = $user_data['Status'];
         $_SESSION['last_activity'] = time();
+        return true;
     }
     
     public function validateAuthCookie() {
-        if(isset($_COOKIE['auth_token']) && isset($_COOKIE['user_type']) && isset($_COOKIE['user_id'])) {
+        if (isset($_COOKIE['auth_token']) && isset($_COOKIE['user_type']) && isset($_COOKIE['user_id'])) {
             $token = $_COOKIE['auth_token'];
             $user_type = $_COOKIE['user_type'];
             $user_id = $_COOKIE['user_id'];
             $token_hash = hash('sha256', $token);
             
             // Cek token di database
-            $sql = "SELECT * FROM auth_tokens WHERE user_type = ? AND user_id = ? AND token_hash = ? AND expiry > NOW() AND is_valid = 1";
+            $sql = "SELECT id FROM auth_tokens WHERE user_type = ? AND user_id = ? AND token_hash = ? AND expiry > NOW() AND is_valid = 1";
             $stmt = $this->conn->prepare($sql);
             $stmt->bind_param("sis", $user_type, $user_id, $token_hash);
             $stmt->execute();
             $result = $stmt->get_result();
             
-            if($result->num_rows > 0) {
+            if ($result->num_rows > 0) {
                 // Token valid, perbarui session
-                $table = $user_type;
-                $id_field = 'ID_' . ucfirst($user_type);
-                $nama_field = $user_type === 'petugas' ? 'Nama_Petugas' : 'Nama';
-                
-                $user_sql = "SELECT * FROM $table WHERE $id_field = ? AND Status = 'Aktif'";
-                $user_stmt = $this->conn->prepare($user_sql);
-                $user_stmt->bind_param("i", $user_id);
-                $user_stmt->execute();
-                $user_result = $user_stmt->get_result();
-                
-                if($user_data = $user_result->fetch_assoc()) {
-                    $_SESSION['user_type'] = $user_type;
-                    $_SESSION['user_id'] = $user_id;
-                    $_SESSION['email'] = $user_data['Email'];
-                    $_SESSION['nama'] = $user_data[$nama_field];
-                    $_SESSION['status'] = $user_data['Status'];
-                    $_SESSION['last_activity'] = time();
-                    return true;
-                }
+                session_regenerate_id(true); // Regenerasi ID sesi
+                return true;
             }
         }
         return false;
     }
     
     public function clearAuthCookies() {
-        if(isset($_COOKIE['auth_token']) && isset($_COOKIE['user_type']) && isset($_COOKIE['user_id'])) {
+        if (isset($_COOKIE['auth_token']) && isset($_COOKIE['user_type']) && isset($_COOKIE['user_id'])) {
             $token = $_COOKIE['auth_token'];
             $user_type = $_COOKIE['user_type'];
             $user_id = $_COOKIE['user_id'];

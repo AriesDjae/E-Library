@@ -111,6 +111,19 @@ CREATE TABLE IF NOT EXISTS `reading_room_booking` (
   CONSTRAINT `FK_User_Booking` FOREIGN KEY (`ID_Anggota`) REFERENCES `anggota` (`ID_Anggota`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE IF NOT EXISTS `user_sessions` (
+    `session_id` VARCHAR(255) PRIMARY KEY,
+    `user_type` ENUM('Anggota', 'Petugas') NOT NULL,  -- Menambahkan tipe pengguna yang hanya bisa 'Anggota' atau 'Petugas'
+    `user_id` INT NOT NULL,  -- ID pengguna yang bisa merujuk ke anggota atau petugas
+    `ip_address` VARCHAR(45),  -- Menyimpan alamat IP
+    `user_agent` TEXT,  -- Menyimpan informasi user-agent
+    `session_data` MEDIUMTEXT,  -- Menyimpan data sesi dalam bentuk teks
+    `last_activity` DATETIME NOT NULL,  -- Menyimpan waktu aktivitas terakhir
+    FOREIGN KEY (`user_id`) REFERENCES `anggota` (`ID_Anggota`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`user_id`) REFERENCES `petugas` (`ID_Petugas`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 -- Tambahkan ruangan secara otomatis
 INSERT IGNORE INTO `reading_room` (`Nama_Ruang`, `Kapasitas`, `Status`)
 VALUES
