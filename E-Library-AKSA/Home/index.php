@@ -48,14 +48,6 @@
                             <form method="post"><button type="submit" name="page" value="reading-room">Reading Room</button></form>
                         </div>
                     </li>
-                    <li class="dropdown">
-                        <form method="post"><button type="submit" name="page" value="information" class="dropbtn">Information</button></form>
-                        <div class="dropdown-content">
-                            <form method="post"><button type="submit" name="page" value="about">About Us</button></form>
-                            <form method="post"><button type="submit" name="page" value="contact">Contact</button></form>
-                            <form method="post"><button type="submit" name="page" value="help">Help</button></form>
-                        </div>
-                    </li>
                     <li>
                         <form method="post"><button type="submit" name="page" value="account">My Account</button></form>
                     </li>
@@ -110,20 +102,6 @@ switch ($page) {
         break;
     case 'reading-room':
         include 'C:\xampp\htdocs/NavContent/services/reading-rooms.php';
-        break;
-
-    // Information
-    case 'information':
-        include 'NavContent/information/information.php';
-        break;
-    case 'about':
-        include 'NavContent/information/about.php';
-        break;
-    case 'contact':
-        include 'NavContent/information/contact.php';
-        break;
-    case 'help':
-        include 'NavContent/information/help.php';
         break;
 
     // Account
