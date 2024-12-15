@@ -137,3 +137,20 @@ VALUES
 ('Ruang Baca 8', 10, 'Tersedia'),
 ('Ruang Baca 9', 10, 'Tersedia'),
 ('Ruang Baca 10', 10, 'Tersedia');
+
+-- Cek apakah kategori dengan ID_Kategori = 1 sudah ada
+SELECT COUNT(*) AS existing_category FROM kategori WHERE ID_Kategori = 1;
+
+-- Jika hasilnya 0, maka kategori belum ada, dan kita bisa menambahkannya
+-- Menambahkan kategori "Fiksi" jika belum ada
+INSERT INTO kategori (ID_Kategori, Nama_Kategori)
+SELECT 1, 'Fiksi'
+WHERE NOT EXISTS (SELECT 1 FROM kategori WHERE ID_Kategori = 1);
+
+-- Menambahkan data buku Bulan Tere Liye ke tabel buku jika belum ada
+INSERT INTO buku 
+(ID_Kategori, Penulis, Judul, Penerbit, Tahun_Terbit, Lokasi_Rak, Stok, Deskripsi, Cover_Image)
+SELECT 1, 'Tere Liye', 'Bulan', 'PENERBIT SABAK GRIP', 2022, 'Rak A1', 10, 
+'Petualangan Raib, Seli, dan Ali berlanjut. Beberapa bulan setelah peristiwa klan bulan, Miss Selena akhirnya muncul di sekolah. Ia membawa kabar menggembirakan untuk anak-anak yang berjiwa petualang seperti Raib, Seli, dan Ali. Miss Selena bersama dengan Av akan mengajak mereka untuk mengunjungi klan matahari selama dua minggu. Av berencana akan bertemu dengan ketua konsil klan matahari, yang menguasai klan matahari sepenuhnya untuk mencari sekutu dalam menghadapi Tamus yang diperkirakan akan bebas dan juga membebaskan raja tanpa mahkota. Sesampainya mereka di Klan matahari, mereka disambut oleh festival bunga matahari...',
+'bulan.jpg'
+WHERE NOT EXISTS (SELECT 1 FROM buku WHERE Judul = 'Bulan');

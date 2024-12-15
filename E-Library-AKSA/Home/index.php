@@ -43,8 +43,8 @@
                     <li class="dropdown">
                         <form method="post"><button type="submit" name="page" value="services" class="dropbtn">Services</button></form>
                         <div class="dropdown-content">
-                            <form method="post"><button type="submit" name="page" value="borrow-return">Borrow</button></form>
-                            <form method="post"><button type="submit" name="page" value="return">Return</button></form>
+                            <form method="post"><button type="submit" name="page" value="borrowing">Borrow</button></form>
+                            <form method="post"><button type="submit" name="page" value="returning">Return</button></form>
                             <form method="post"><button type="submit" name="page" value="reading-room">Reading Room</button></form>
                         </div>
                     </li>
@@ -66,22 +66,22 @@ switch ($page) {
 
     // Collections
     case 'collections':
-        include 'NavContent/resources/resources.php';
+        include 'C:\xampp\htdocs\E-Library\E-Library-AKSA\NavContent\resources/resources.php';
         break;
     case 'catalog':
-        include 'NavContent/resources/catalog.php';
+        include 'C:\xampp\htdocs\E-Library\E-Library-AKSA\NavContent/resources/catalog.php';
         break;
     case 'new-arrivals':
-        include 'NavContent/resources/new-arrivals.php';
+        include 'C:\xampp\htdocs\E-Library\E-Library-AKSA\NavContent\resources/new-arrivals.php';
         break;
     case 'popular-books':
-        include 'NavContent/resources/popular-books.php';
+        include 'C:\xampp\htdocs\E-Library\E-Library-AKSA\NavContent\resources/popular-books.php';
         break;
     case 'recommendations':
         include 'NavContent/resources/recommendations.php';
         break;
     case 'journals':
-        include 'NavContent/resources/journals.php';
+        include 'C:\xampp\htdocs\E-Library\E-Library-AKSA\NavContent\resources/journals.php';
         break;
     case 'research-papers':
         include 'NavContent/resources/research-papers.php';
@@ -95,13 +95,13 @@ switch ($page) {
         include 'NavContent/services/services.php';
         break;
     case 'borrowing':
-        include 'NavContent/services/borrowing.php';
+        include 'C:\xampp\htdocs\E-Library\E-Library-AKSA\NavContent\services/borrowing.php';
         break;
     case 'returning':
-        include 'NavContent/services/returning.php';
+        include 'C:\xampp\htdocs\E-Library\E-Library-AKSA\NavContent\services/returning.php';
         break;
     case 'reading-room':
-        include 'C:\xampp\htdocs/NavContent/services/reading-rooms.php';
+        include 'C:\xampp\htdocs\E-Library\E-Library-AKSA\NavContent\services/reading-rooms.php';
         break;
 
     // Account
