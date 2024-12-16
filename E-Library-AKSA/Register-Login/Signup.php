@@ -4,14 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignUp</title>
-    <link rel="stylesheet" href="../src/css/styles.css">
+    <link rel="stylesheet" href="styles.css">
     
 </head>
 <body>
-    <?php
-    require 'db_config.php';
-    require 'verif_regis.php';
-    ?>
     <!-- Skema untuk pengunjung karena email kampus mahasiswa dan dosen sudah terdaftar -->
     <div class="wrapper">
         <h1>Sign Up</h1>
