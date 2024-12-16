@@ -1,6 +1,14 @@
 <?php
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');     // ganti dengan username database Anda
-define('DB_PASS', '');         // ganti dengan password database Anda
-define('DB_NAME', 'e-library'); // ganti dengan nama database Anda
-?> 
+$servername = "localhost"; 
+$username = "root";        
+$password = "";            
+$dbname = "e-library";     
+
+// Membuat koneksi
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Cek koneksi
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+?>

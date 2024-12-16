@@ -4,7 +4,7 @@ require_once __DIR__ . '/db_config.php';
 require_once 'SessionManager.php';
 
 // Koneksi ke database
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+$conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
