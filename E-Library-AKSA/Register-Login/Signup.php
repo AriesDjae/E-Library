@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignUp</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../src/css/styles.css">
     
 </head>
 <body>
@@ -16,7 +16,7 @@
     <div class="wrapper">
         <h1>Sign Up</h1>
         <p id="error-message"></p>
-        <form id="form" action="Signup.html" method="post">
+        <form id="form" action="process_signup.php" method="post">
             <div>
                 <label for="namalengkap">
                     <span>A</span>
