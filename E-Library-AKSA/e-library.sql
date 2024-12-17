@@ -30,13 +30,14 @@ CREATE TABLE IF NOT EXISTS `petugas` (
   `ID_Petugas` INT AUTO_INCREMENT NOT NULL,
   `Nama_Petugas` VARCHAR(100) NOT NULL,
   `No_Telepon` VARCHAR(15) NOT NULL,
-  `Status` ENUM('Aktif', 'Nonaktif') NOT NULL,
+  `Status` ENUM('Aktif', 'Nonaktif') NOT NULL DEFAULT 'Aktif',
   `Username` VARCHAR(100) NOT NULL UNIQUE,
   `Password` VARCHAR(255) NOT NULL,
-  `Email` VARCHAR(255),
+  `Email` VARCHAR(255) NOT NULL UNIQUE,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID_Petugas`),
+  PRIMARY KEY (`ID_Petugas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- Tabel buku
 CREATE TABLE IF NOT EXISTS `buku` (
