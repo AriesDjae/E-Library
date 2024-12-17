@@ -1,7 +1,7 @@
 <?php
 // Mengimpor file koneksi database
-require 'db_config.php';
-include 'Signup.php';
+require 'db.php';
+require 'Signup.php';
 
 // Menangkap data dari form
 $nama_lengkap = $_POST['namalengkap'] ?? '';
@@ -18,10 +18,10 @@ if ($password !== $repeat_password) {
     die("Password dan Konfirmasi Password tidak cocok!");
 }
 
-if (in_array($tipe, ['Mahasiswa', 'Dosen', 'Pengunjung'])) {
-        echo "Password valid";
+if (in_array($tipe, ['Mahasiswa', 'Dosen', 'Pengunjung', 'Petugas'])) {
+        echo "Identitas Valid";
 } else {
-        echo "Password tidak valid";
+        echo "Identitas tidak valid";
 }
     
 

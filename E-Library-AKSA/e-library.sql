@@ -21,8 +21,8 @@ CREATE TABLE IF NOT EXISTS `anggota` (
   `Status` ENUM('Aktif', 'Nonaktif') NOT NULL,
   `Username` VARCHAR(100) NOT NULL UNIQUE,
   `Password` VARCHAR(255) NOT NULL,
-  `Tanggal_Registrasi` DATE NOT NULL,
-  PRIMARY KEY (`ID_Anggota`)
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID_Anggota`),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Tabel petugas
@@ -34,7 +34,8 @@ CREATE TABLE IF NOT EXISTS `petugas` (
   `Username` VARCHAR(100) NOT NULL UNIQUE,
   `Password` VARCHAR(255) NOT NULL,
   `Email` VARCHAR(255),
-  PRIMARY KEY (`ID_Petugas`)
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID_Petugas`),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Tabel buku

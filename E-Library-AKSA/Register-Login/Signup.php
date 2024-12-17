@@ -12,7 +12,7 @@
     <div class="wrapper">
         <h1>Sign Up</h1>
         <p id="error-message"></p>
-        <form id="form" action="process_signup.php" method="post">
+        <form id="form" action="verif_regis.php" method="post">
             <div>
                 <label for="namalengkap">
                     <span>A</span>
