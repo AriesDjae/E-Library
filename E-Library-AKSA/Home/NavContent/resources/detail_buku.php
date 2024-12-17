@@ -1,9 +1,9 @@
 <?php
 // Koneksi ke database
-$servername = "localhost";  // Ganti dengan host Anda
-$username = "root";         // Ganti dengan username MySQL Anda
-$password = "";             // Ganti dengan password MySQL Anda
-$dbname = "e-library";      // Nama database
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "e-library";
 
 // Membuat koneksi
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -42,121 +42,114 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Buku - <?= htmlspecialchars($row['Judul']); ?></title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
             margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #1a73e8;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        .catalog {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin: 20px;
-        }
-
-        .book {
-            width: 220px;
-            text-align: center;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 10px;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s;
-        }
-
-        .book:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .book img {
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
-            object-fit: cover;
-        }
-
-        .book h3 {
-            font-size: 16px;
-            margin-top: 10px;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7fc;
             color: #333;
         }
 
+        header {
+            background-color: #0A3697; /* Warna solid */
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
         .container {
-            width: 80%;
-            margin: 20px auto;
+            max-width: 1000px;
+            margin: 40px auto;
             background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
         }
 
         .book-details {
             display: flex;
+            flex-wrap: wrap;
             gap: 20px;
-            margin-bottom: 20px;
         }
 
         .book-image img {
-            width: 200px;
-            height: auto;
+            width: 300px;
+            height: 450px;
             object-fit: cover;
-            border-radius: 5px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .book-info {
-            max-width: 600px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .book-info h2 {
-            font-size: 24px;
-            margin: 0;
-            color: #333;
+            font-size: 28px;
+            color: #444;
+            margin-bottom: 10px;
         }
 
         .book-info p {
-            margin: 10px 0;
-            color: #555;
+            margin: 8px 0;
             font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .book-info strong {
+            color: #0A3697; /* Tema warna */
         }
 
         .back-btn {
             text-decoration: none;
-            padding: 10px 20px;
-            background-color: #1a73e8;
+            background-color: #0A3697; /* Warna solid */
             color: white;
+            padding: 12px 25px;
+            text-align: center;
             border-radius: 5px;
+            font-weight: 600;
             margin-top: 20px;
-            display: inline-block;
+            align-self: flex-start;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
         .back-btn:hover {
-            background-color: #155d8c;
+            background-color: #082C72; /* Warna lebih gelap saat hover */
+            transform: translateY(-2px);
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .book-details {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .book-image img {
+                width: 100%;
+                height: auto;
+            }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Detail Buku: <?= htmlspecialchars($row['Judul']); ?></h1>
+    Detail Buku: <?= htmlspecialchars($row['Judul']); ?>
 </header>
 
 <div class="container">
     <div class="book-details">
         <div class="book-image">
-            <img src="http://localhost/E-Library/E-Library-AKSA/src/img/<?= htmlspecialchars($row['Cover_Image']); ?>" alt="<?= htmlspecialchars($row['Judul']); ?>">
+            <img src="http://localhost/E-Library/E-Library-AKSA/Home/img/<?= htmlspecialchars($row['Cover_Image']); ?>" alt="<?= htmlspecialchars($row['Judul']); ?>">
         </div>
         <div class="book-info">
             <h2><?= htmlspecialchars($row['Judul']); ?></h2>
@@ -166,17 +159,14 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             <p><strong>Kategori:</strong> <?= htmlspecialchars($row['Nama_Kategori']); ?></p>
             <p><strong>Lokasi Rak:</strong> <?= htmlspecialchars($row['Lokasi_Rak']); ?></p>
             <p><strong>Stok:</strong> <?= htmlspecialchars($row['Stok']); ?> buku</p>
-            <p><strong>Deskripsi:</strong> <?= nl2br(htmlspecialchars($row['Deskripsi'])); ?></p>
+            <p><strong>Deskripsi:</strong><br> <?= nl2br(htmlspecialchars($row['Deskripsi'])); ?></p>
+            <a href="javascript:history.go(-1)" class="back-btn">Kembali ke Katalog</a>
         </div>
     </div>
-
-    <a href="catalog.php" class="back-btn">Kembali ke Katalog</a>
 </div>
 
 </body>
 </html>
-
 <?php
-// Menutup koneksi
 $conn->close();
 ?>

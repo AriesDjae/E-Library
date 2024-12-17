@@ -1,51 +1,87 @@
+<?php
+// Koneksi ke database
+$host = 'localhost';  // Ganti dengan host database Anda
+$username = 'root';  // Ganti dengan username MySQL Anda
+$password = '';  // Ganti dengan password MySQL Anda
+$dbname = 'e-library';  // Nama database yang sudah ada
+
+// Membuat koneksi
+$conn = new mysqli($host, $username, $password, $dbname);
+
+// Memeriksa koneksi
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Proses Pengembalian Buku
+if (isset($_POST['return'])) {
+    $bookId = $_POST['bookId'];
+    $userId = $_POST['userId'];
+    $returnDate = $_POST['returnDate'];
+
+    // Memeriksa status peminjaman buku
+    $sql_check = "SELECT p.ID_Buku, p.ID_Anggota, p.Tanggal_Harus_Pengembalian, b.Judul, b.Penulis
+                  FROM peminjaman p
+                  JOIN buku b ON p.ID_Buku = b.ID_Buku
+                  WHERE p.ID_Buku = ? AND p.ID_Anggota = ? AND p.Status_Peminjaman = 'Dipinjam'";
+
+    $stmt = $conn->prepare($sql_check);
+    $stmt->bind_param('ii', $bookId, $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        // Mendapatkan data buku yang dipinjam
+        $row = $result->fetch_assoc();
+        $judulBuku = $row['Judul'];
+        $penulisBuku = $row['Penulis'];
+
+        // Pembaruan status peminjaman dan pengembalian buku
+        $sql_update = "UPDATE peminjaman SET Status_Peminjaman = 'Dikembalikan', Tanggal_Pengembalian = ? WHERE ID_Buku = ? AND ID_Anggota = ?";
+        $stmt_update = $conn->prepare($sql_update);
+
+        // Menyiapkan parameter dan mengeksekusi query update
+        $stmt_update->bind_param('sii', $returnDate, $bookId, $userId);
+        if ($stmt_update->execute()) {
+            echo "<p>Buku dengan ID <strong>$bookId</strong> ('<em>$judulBuku</em>' oleh $penulisBuku) telah dikembalikan oleh Anggota <strong>$userId</strong> pada <strong>$returnDate</strong>.</p>";
+        } else {
+            echo "<p>Terjadi kesalahan: " . $stmt_update->error . "</p>";
+        }
+    } else {
+        echo "<p>Data peminjaman buku dengan ID: <strong>$bookId</strong> oleh Anggota ID: <strong>$userId</strong> tidak ditemukan atau buku telah dikembalikan.</p>";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Returning Books</title>
-    <link rel="stylesheet" href="../../style.css"> <!-- Sesuaikan jalur CSS -->
+    <title>Pengembalian Buku</title>
+    <link rel="stylesheet" href="NavContent/services/styles.css"> 
 </head>
 <body>
     <div class="container">
-        <h1>Return a Book</h1>
-        <form action="" method="post">
-            <label for="bookId">Book ID:</label>
+        <h1>Pengembalian Buku</h1>
+        <form action="return_book.php" method="post">
+            <label for="bookId">ID Buku:</label>
             <input type="text" id="bookId" name="bookId" required>
             <br>
-            <label for="userId">User ID:</label>
+            <label for="userId">ID Anggota:</label>
             <input type="text" id="userId" name="userId" required>
             <br>
-            <label for="returnDate">Return Date:</label>
+            <label for="returnDate">Tanggal Pengembalian:</label>
             <input type="date" id="returnDate" name="returnDate" required>
             <br>
-            <button type="submit" name="return">Return</button>
+            <button type="submit" name="return">Kembalikan Buku</button>
         </form>
-
-        <?php
-        // Proses Pengembalian Buku
-        if (isset($_POST['return'])) {
-            $bookId = $_POST['bookId'];
-            $userId = $_POST['userId'];
-            $returnDate = $_POST['returnDate'];
-
-            // Logika Pengembalian Buku
-            echo "<p>Book with ID <strong>$bookId</strong> has been returned by User <strong>$userId</strong> on <strong>$returnDate</strong>.</p>";
-
-            // Contoh pembaruan data di database (sesuaikan dengan kebutuhan Anda)
-            // $connection = new mysqli('hostname', 'username', 'password', 'database');
-            // if ($connection->connect_error) {
-            //     die("Connection failed: " . $connection->connect_error);
-            // }
-            // $sql = "UPDATE borrowed_books SET status='returned', return_date='$returnDate' WHERE book_id='$bookId' AND user_id='$userId'";
-            // if ($connection->query($sql) === TRUE) {
-            //     echo "<p>Return record successfully updated!</p>";
-            // } else {
-            //     echo "<p>Error: " . $sql . "<br>" . $connection->error . "</p>";
-            // }
-            // $connection->close();
-        }
-        ?>
     </div>
 </body>
 </html>
+
+<?php
+// Menutup koneksi
+$conn->close();
+?>

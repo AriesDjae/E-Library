@@ -26,7 +26,6 @@ $result = $conn->query($sql);
 $total_books_result = $conn->query("SELECT COUNT(*) AS total FROM buku");
 $total_books = $total_books_result->fetch_assoc()['total'];
 $total_pages = ceil($total_books / $items_per_page);
-
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -78,6 +77,11 @@ $total_pages = ceil($total_books / $items_per_page);
             height: auto;
             border-radius: 5px;
             object-fit: cover;
+        }
+
+        .book a {
+            text-decoration: none;
+            color: inherit; /* Warna teks tetap sama */
         }
 
         .book h3 {
@@ -140,8 +144,8 @@ $total_pages = ceil($total_books / $items_per_page);
         // Menampilkan data setiap buku
         while($row = $result->fetch_assoc()) {
             echo '<div class="book">';
-            echo '<a href="http://localhost/E-Library/E-Library-AKSA/NavContent/resources/detail_buku.php?id=' . $row['ID_Buku'] . '">';
-            echo '<img src="http://localhost/E-Library/E-Library-AKSA/src/img/' . $row['Cover_Image'] . '" alt="' . $row['Judul'] . '">';
+            echo '<a href="NavContent/resources/detail_buku.php?id=' . $row['ID_Buku'] . '">';
+            echo '<img src="img/' . $row['Cover_Image'] . '" alt="' . $row['Judul'] . '">';
             echo '<h3>' . $row['Judul'] . '</h3>';
             echo '</a>';
             echo '</div>';
@@ -154,7 +158,9 @@ $total_pages = ceil($total_books / $items_per_page);
 
 <div class="pagination">
     <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
-        <a href="?page=<?= $i; ?>" class="<?= $i == $page ? 'active' : ''; ?>"><?= $i; ?></a>
+        <?php if ($i != 1) : // Sembunyikan tombol halaman 1 ?>
+            <a href="?page=<?= $i; ?>" class="<?= $i == $page ? 'active' : ''; ?>"><?= $i; ?></a>
+        <?php endif; ?>
     <?php endfor; ?>
 </div>
 
@@ -178,6 +184,5 @@ $total_pages = ceil($total_books / $items_per_page);
 </html>
 
 <?php
-// Menutup koneksi
 $conn->close();
 ?>

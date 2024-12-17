@@ -69,10 +69,10 @@ switch ($page) {
         include 'C:\xampp\htdocs\E-Library\E-Library-AKSA\NavContent\resources/resources.php';
         break;
     case 'catalog':
-        include 'C:\xampp\htdocs\E-Library\E-Library-AKSA\NavContent/resources/catalog.php';
+        include 'NavContent/resources/catalog.php';
         break;
     case 'new-arrivals':
-        include 'C:\xampp\htdocs\E-Library\E-Library-AKSA\NavContent\resources/new-arrivals.php';
+        include 'NavContent\resources/new-arrivals.php';
         break;
     case 'popular-books':
         include 'C:\xampp\htdocs\E-Library\E-Library-AKSA\NavContent\resources/popular-books.php';
@@ -95,13 +95,13 @@ switch ($page) {
         include 'NavContent/services/services.php';
         break;
     case 'borrowing':
-        include 'C:\xampp\htdocs\E-Library\E-Library-AKSA\NavContent\services/borrowing.php';
+        include 'NavContent\services/borrowing.php';
         break;
     case 'returning':
-        include 'C:\xampp\htdocs\E-Library\E-Library-AKSA\NavContent\services/returning.php';
+        include 'NavContent\services/returning.php';
         break;
     case 'reading-room':
-        include 'C:\xampp\htdocs\E-Library\E-Library-AKSA\NavContent\services/reading-rooms.php';
+        include 'NavContent\services/reading-rooms.php';
         break;
 
     // Account
@@ -122,7 +122,6 @@ switch ($page) {
         include 'home.php';
         break;
 }
-?>
 ?>
 
 

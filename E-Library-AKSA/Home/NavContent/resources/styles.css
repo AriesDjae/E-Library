@@ -1,0 +1,143 @@
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #1a73e8, #0d47a1);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+    letter-spacing: 1px;
+}
+
+/* Search Box */
+.search-box {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.search-box input {
+    padding: 12px 15px;
+    width: 320px;
+    border: 2px solid #ddd;
+    border-radius: 50px;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #1a73e8;
+    box-shadow: 0 4px 8px rgba(26, 115, 232, 0.3);
+}
+
+/* Catalog Container */
+.catalog {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px;
+}
+
+/* Book Cards */
+.book {
+    width: 220px;
+    text-align: center;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.book:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.book img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.book h3 {
+    font-size: 1.1rem;
+    margin: 10px 0 0;
+    color: #444;
+    transition: color 0.3s ease;
+}
+
+.book:hover h3 {
+    color: #1a73e8;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.pagination a {
+    text-decoration: none;
+    padding: 8px 12px;
+    margin: 0 5px;
+    border-radius: 50px;
+    color: #1a73e8;
+    border: 2px solid #1a73e8;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.pagination a.active, 
+.pagination a:hover {
+    background-color: #1a73e8;
+    color: white;
+    box-shadow: 0 4px 8px rgba(26, 115, 232, 0.3);
+}
+
+/* No Books Message */
+.catalog p {
+    font-size: 1.2rem;
+    color: #888;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .book {
+        width: 45%;
+    }
+
+    .search-box input {
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .book {
+        width: 90%;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+}

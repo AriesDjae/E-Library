@@ -2,6 +2,7 @@
 // Koneksi ke database
 $conn = new mysqli("localhost", "root", "", "e-library");
 
+// Check the connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -19,51 +20,65 @@ $updateQuery = $conn->prepare("UPDATE reading_room
 $updateQuery->bind_param("sss", $currentDate, $currentDate, $currentTime);
 $updateQuery->execute();
 
+// Handle POST request for booking
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['book'])) {
     $response = ['status' => 'error', 'message' => ''];
+
+    // Validate input
     $roomId = filter_input(INPUT_POST, 'roomId', FILTER_VALIDATE_INT);
     $userId = filter_input(INPUT_POST, 'userId', FILTER_VALIDATE_INT);
     $date = filter_input(INPUT_POST, 'date', FILTER_SANITIZE_STRING);
     $startTime = filter_input(INPUT_POST, 'startTime', FILTER_SANITIZE_STRING);
     $endTime = filter_input(INPUT_POST, 'endTime', FILTER_SANITIZE_STRING);
 
-    if (strtotime($date) < strtotime($currentDate)) {
-        $response['message'] = "Cannot book for past dates";
+    // Ensure inputs are valid
+    if (!$roomId || !$userId || !$date || !$startTime || !$endTime) {
+        $response['message'] = "Invalid input. Please check your input values.";
     } else {
-        $duration = (strtotime($endTime) - strtotime($startTime)) / 60;
-        if ($duration < 30 || $duration > 240) {
-            $response['message'] = "Booking duration must be between 30 minutes and 4 hours";
+        // Ensure date is not in the past
+        if (strtotime($date) < strtotime($currentDate)) {
+            $response['message'] = "Cannot book for past dates.";
         } else {
-            $checkQuery = $conn->prepare("SELECT * FROM reading_room_booking 
-                           WHERE ID_Room = ? 
-                           AND Tanggal_Booking = ? 
-                           AND ((Waktu_Mulai BETWEEN ? AND ?) OR 
-                                (Waktu_Selesai BETWEEN ? AND ?) OR
-                                (? BETWEEN Waktu_Mulai AND Waktu_Selesai))");
-            $checkQuery->bind_param("issssss", $roomId, $date, $startTime, $endTime, $startTime, $endTime, $startTime);
-            $checkQuery->execute();
-            $result = $checkQuery->get_result();
-
-            if ($result->num_rows > 0) {
-                $response['message'] = "Sorry, the selected room is already booked during the selected time.";
+            // Calculate the duration of the booking
+            $duration = (strtotime($endTime) - strtotime($startTime)) / 60;
+            if ($duration < 30 || $duration > 240) {
+                $response['message'] = "Booking duration must be between 30 minutes and 4 hours.";
             } else {
-                $insertQuery = $conn->prepare("INSERT INTO reading_room_booking (ID_Room, ID_Anggota, Tanggal_Booking, Waktu_Mulai, Waktu_Selesai)
-                                VALUES (?, ?, ?, ?, ?)");
-                $insertQuery->bind_param("iisss", $roomId, $userId, $date, $startTime, $endTime);
+                // Check if room is already booked during the selected time
+                $checkQuery = $conn->prepare("SELECT * FROM reading_room_booking 
+                               WHERE ID_Room = ? 
+                               AND Tanggal_Booking = ? 
+                               AND ((Waktu_Mulai BETWEEN ? AND ?) OR 
+                                    (Waktu_Selesai BETWEEN ? AND ?) OR
+                                    (? BETWEEN Waktu_Mulai AND Waktu_Selesai))");
+                $checkQuery->bind_param("issssss", $roomId, $date, $startTime, $endTime, $startTime, $endTime, $startTime);
+                $checkQuery->execute();
+                $result = $checkQuery->get_result();
 
-                if ($insertQuery->execute()) {
-                    $updateRoomStatus = $conn->prepare("UPDATE reading_room SET Status = 'Dipesan' WHERE ID_Room = ?");
-                    $updateRoomStatus->bind_param("i", $roomId);
-                    $updateRoomStatus->execute();
-
-                    $response['status'] = 'success';
-                    $response['message'] = "Room successfully booked!";
+                if ($result->num_rows > 0) {
+                    $response['message'] = "Sorry, the selected room is already booked during the selected time.";
                 } else {
-                    $response['message'] = "There was an error processing your booking: " . $conn->error;
+                    // Insert booking into the database
+                    $insertQuery = $conn->prepare("INSERT INTO reading_room_booking (ID_Room, ID_Anggota, Tanggal_Booking, Waktu_Mulai, Waktu_Selesai)
+                                    VALUES (?, ?, ?, ?, ?)");
+                    $insertQuery->bind_param("iisss", $roomId, $userId, $date, $startTime, $endTime);
+
+                    if ($insertQuery->execute()) {
+                        // Update room status to "Booked"
+                        $updateRoomStatus = $conn->prepare("UPDATE reading_room SET Status = 'Dipesan' WHERE ID_Room = ?");
+                        $updateRoomStatus->bind_param("i", $roomId);
+                        $updateRoomStatus->execute();
+
+                        $response['status'] = 'success';
+                        $response['message'] = "Room successfully booked!";
+                    } else {
+                        $response['message'] = "There was an error processing your booking. Please try again.";
+                    }
                 }
             }
         }
     }
+    // Return response as JSON
     echo json_encode($response);
     exit;
 }
@@ -75,18 +90,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['book'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book a Reading Room - E-Library</title>
+    <style>
+        .notification.success { color: green; }
+        .notification.error { color: red; }
+    </style>
 </head>
 <body>
     <div class="content">
         <section class="book-borrowing">
             <h2>Book a Reading Room</h2>
             <p>Reserve a quiet space for focused study or research. Please fill out the form below to book your room:</p>
-            
+
             <form id="bookingForm" class="booking-form" method="post">
                 <div class="form-group">
                     <label for="roomId">Select Room:</label>
                     <select id="roomId" name="roomId" required>
                         <?php
+                        // Fetch available rooms
                         $query = "SELECT ID_Room, Nama_Ruang FROM reading_room WHERE Status = 'Tersedia'";
                         $result = $conn->query($query);
 

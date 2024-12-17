@@ -21,8 +21,8 @@ CREATE TABLE IF NOT EXISTS `anggota` (
   `Status` ENUM('Aktif', 'Nonaktif') NOT NULL,
   `Username` VARCHAR(100) NOT NULL UNIQUE,
   `Password` VARCHAR(255) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID_Anggota`),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID_Anggota`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Tabel petugas
@@ -156,3 +156,40 @@ SELECT 1, 'Tere Liye', 'Bulan', 'PENERBIT SABAK GRIP', 2022, 'Rak A1', 10,
 'Petualangan Raib, Seli, dan Ali berlanjut. Beberapa bulan setelah peristiwa klan bulan, Miss Selena akhirnya muncul di sekolah. Ia membawa kabar menggembirakan untuk anak-anak yang berjiwa petualang seperti Raib, Seli, dan Ali. Miss Selena bersama dengan Av akan mengajak mereka untuk mengunjungi klan matahari selama dua minggu. Av berencana akan bertemu dengan ketua konsil klan matahari, yang menguasai klan matahari sepenuhnya untuk mencari sekutu dalam menghadapi Tamus yang diperkirakan akan bebas dan juga membebaskan raja tanpa mahkota. Sesampainya mereka di Klan matahari, mereka disambut oleh festival bunga matahari...',
 'bulan.jpg'
 WHERE NOT EXISTS (SELECT 1 FROM buku WHERE Judul = 'Bulan');
+
+INSERT INTO buku 
+(ID_Kategori, Penulis, Judul, Penerbit, Tahun_Terbit, Lokasi_Rak, Stok, Deskripsi, Cover_Image)
+SELECT 1, 'Tere Liye', 'Matahari', 'PENERBIT SABAK GRIP', 2022, 'Rak A1', 10, 
+'Namanya Ali, 15 tahun, kelas X. Jika saja orangtuanya mengizinkan, seharusnya dia sudah duduk di tingkat akhir ilmu fisika program doktor di universitas ternama. Ali tidak menyukai sekolahnya, guru-gurunya, teman-teman sekelasnya. Semua membosankan baginya. Tapi sejak dia mengetahui ada yang aneh pada diriku dan Seli, teman sekelasnya, hidupnya yang membosankan berubah seru. Aku bisa menghilang, dan Seli bisa mengeluarkan petir. Ali sendiri punya rahasia kecil. Dia bisa berubah menjadi beruang raksasa. Kami bertiga kemudian bertualang ke tempat-tempat menakjubkan. Namanya Ali. Dia tahu sejak dulu dunia ini tidak sesederhana yang dilihat orang. Dan di atas segalanya, dia akhirnya tahu persahabatan adalah hal yang paling utama.',
+'matahari.jpg'
+WHERE NOT EXISTS (SELECT 1 FROM buku WHERE Judul = 'Matahari');
+
+-- Menambahkan data buku "Bintang" ke tabel buku jika belum ada
+INSERT INTO buku 
+(ID_Kategori, Penulis, Judul, Penerbit, Tahun_Terbit, Lokasi_Rak, Stok, Deskripsi, Cover_Image)
+SELECT 1,'Tere Liye', 'Bintang', 'PENERBIT SABAK GRIP', 2023,'Rak A2', 5,'Bintang adalah buku keempat dari serial Bumi yang ditulis oleh Tere Liye. Novel Bintang menceritakan tentang Raib, Seli, dan Ali, murid SMA kelas 11 yang memiliki rahasia besar. Raib adalah putri dari klan Bulan dengan kekuatan menghilang, Seli berasal dari klan Matahari yang bisa mengeluarkan petir, dan Ali adalah si genius yang bisa berubah menjadi beruang raksasa. Mereka bertualang ke dunia paralel, bertemu penduduk klan lain, dan menghadapi musuh besar yang mengancam dunia paralel. Ini adalah awal dari petualangan baru mereka setelah tiga kali menyelamatkan dunia paralel sebelumnya.', 
+'bintang.jpg'
+WHERE NOT EXISTS (SELECT 1 FROM buku WHERE Judul = 'Bintang');
+
+-- Menambahkan data buku "Harry Potter And The Half-Blood Prince – Slytherin Edition" ke tabel buku jika belum ada
+INSERT INTO buku 
+(ID_Kategori, Penulis, Judul, Penerbit, Tahun_Terbit, Lokasi_Rak, Stok, Deskripsi, Cover_Image)
+SELECT 1,'J.K. Rowling', 'Harry Potter And The Half-Blood Prince – Slytherin Edition', 
+'BLOOMSBURY UK', 2021, 'Rak B1', 7, 'It is the middle of the summer, but there is an unseasonal mist pressing against the windowpanes. Harry Potter is waiting nervously in his bedroom at the Dursleys house in Privet Drive for a visit from Professor Dumbledore himself. One of the last times he saw the Headmaster, he was in a fierce one-to-one duel with Lord Voldemort. Why is the Professor coming to visit him now? What is it that cannot wait until Harry returns to Hogwarts in a few weeks? This Slytherin House Edition celebrates the noble character of Slytherin House, featuring stunning cover designs, bespoke introductions, and illustrations by Levi Pinfold. A must-have for any Slytherin fan.', 
+'halfblood.jpg' -- Nama file gambar sampul buku
+WHERE NOT EXISTS (SELECT 1 FROM buku WHERE Judul = 'Harry Potter And The Half-Blood Prince – Slytherin Edition');
+
+-- Cek apakah kategori dengan ID_Kategori = 2 sudah ada
+SELECT COUNT(*) AS existing_category FROM kategori WHERE ID_Kategori = 2;
+
+INSERT INTO kategori (ID_Kategori, Nama_Kategori)
+SELECT 2, 'Sastra dan Pengetahuan'
+WHERE NOT EXISTS (SELECT 1 FROM kategori WHERE ID_Kategori = 2);
+
+-- Menambahkan data buku "Why? Sci-Tech: Internet of Things dan Geometri" ke tabel buku jika belum ada
+INSERT INTO buku 
+(ID_Kategori, Penulis, Judul, Penerbit, Tahun_Terbit, Lokasi_Rak, Stok, Deskripsi, Cover_Image)
+SELECT 2, 'YeaRimDang', 'Why? Sci-Tech: Internet of Things dan Geometri', 'Elex Media Komputindo', 2024, 'Rak B2', 15, 
+'Di sebuah dunia ajaib, di mana semua benda terhubung ke internet, setiap perangkat bisa `berbicara` dan bekerja sama! Kini, dunia ajaib itu bukan hanya ada dalam dongeng, tapi telah terhampar di hadapan kita. Mobil yang dapat menyetir sendiri ataupun pendingin ruangan yang otomatis menyala saat kita membuka pintu rumah kini mulai terwujud.',
+'why.jpg'
+WHERE NOT EXISTS (SELECT 1 FROM buku WHERE Judul = 'Why? Sci-Tech: Internet of Things dan Geometri');
