@@ -1,0 +1,431 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(180deg, rgba(227, 233, 255, 0) 0%, #E3E9FF 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
+}
+
+.container {
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    background-color: #0A3697;
+    padding: 1.5rem 3rem;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.logo {
+    margin-right: 2rem;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    color: white;
+    font-weight: bold;
+}
+
+/* Search Icon */
+.search-wrap {
+    width: 50%;
+    height: 50%;
+}
+
+.text {
+    color: black;
+    max-width: 600px;
+    font-size: 1.8rem; /* Menambahkan ukuran font yang lebih besar */
+    margin: 2.5rem 0 2.5rem auto; /* Changed: removed 'auto' from left margin */
+    margin-right: 40px; /* Added: right margin */
+    margin-left: auto;
+    margin-top: 180px; /* Added: increased top margin */
+    line-height: 1.2; /* Mengatur jarak antar baris */
+}
+
+.hero-image {
+    position: absolute;
+    left: 100px;      
+    top: 20px;
+    width: 630px;     /* Mengubah ukuran dari 600px */
+    height: 630px;    /* Mengubah ukuran dari 600px */
+    z-index: -1;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Search Container */
+.search-container {
+    display: flex;
+    align-items: center;
+    background: #CBD2EF;
+    padding: 0.8rem;
+    border-radius: 50px;
+    max-width: 600px;
+    margin: 2.5rem 0 2.5rem auto; /* Changed: removed 'auto' from left margin */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-right: 50px; /* Added: right margin */
+    margin-top: 60px; /* Added: increased top margin */
+}
+
+.search-container svg {
+    margin: 0 15px;
+    color: #5f6368;
+    width: 20px;
+    height: 20px;
+}
+
+.search-container input {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    background: #CBD2EF; /* Added this line to match container background */
+}
+
+/* Navigation Menu - Updated Styles */
+.navContent {
+    margin-top: 1rem;
+}
+
+.main-menu {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+/* Button Styles */
+.main-menu form {
+    margin: 0;
+    padding: 0;
+}
+
+.main-menu button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.main-menu button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Dropdown Styles - Diperbarui */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    min-width: 220px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 1;
+    padding: 8px 0;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content button {
+    color: #333 !important;
+    width: 100%;
+    text-align: left;
+    padding: 10px 16px;
+    font-size: 0.95rem;
+    border-radius: 0;
+}
+
+/* Dropdown-dropdown (Sub-dropdown) Styles - Diperbarui */
+.dropdown-dropdown {
+    position: relative;
+}
+
+.dropdown-dropdown button {
+    position: relative;
+    padding-right: 24px;
+}
+
+.dropdown-dropdown button::after {
+    content: '▸';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.dropdown-dropdown:hover button {
+    background-color: #f5f5f5;
+}
+
+.dropdown-dropdown:hover button::after {
+    transform: translateY(-50%) rotate(90deg);
+}
+
+.dropdown-dropdown form:hover+.dropdown-content,
+.dropdown-content:hover {
+    display: block;
+}
+
+/* Sub-dropdown Styles - Updated */
+.sub-dropdown {
+    margin-left: 1rem;
+}
+
+.sub-dropdown button {
+    padding-left: 1.5rem;
+}
+
+/* Content Section */
+.content {
+    padding: 2rem;
+    margin-top: 100px; /* Added: adjust content position */
+}
+
+.content section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.content h2 {
+    color: #0A3697;
+    margin-bottom: 1rem;
+}
+
+/* Responsive Design - Diperbarui */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .logo {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+
+    .main-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .main-menu button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .dropdown-content {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        border: 1px solid #eee;
+        margin-top: 5px;
+    }
+
+    .dropdown-dropdown button::after {
+        transform: translateY(-50%) rotate(90deg);
+    }
+
+    .dropdown-dropdown:hover button::after {
+        transform: translateY(-50%) rotate(90deg);
+    }
+
+    .search-container {
+        width: 90%;
+        margin: 100px auto 1.5rem auto;
+    }
+
+    .search-container input {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 1rem 0.5rem;
+    }
+
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+
+    .search-container {
+        padding: 0.6rem;
+        margin: 1rem auto;
+    }
+
+    .search-container svg {
+        margin: 0 10px;
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* Dropdown dan Categories Styles - Diperbarui */
+.dropdown .dropbtn {
+    position: relative;
+    padding-right: 24px !important;
+}
+
+/* Sembunyikan tanda panah secara default */
+.dropdown .dropbtn::after {
+    content: '▾';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.5s, opacity 0.5s;
+    opacity: 0;
+}
+
+/* Tampilkan tanda panah saat hover */
+.dropdown:hover .dropbtn::after {
+    opacity: 1;
+    transform: translateY(-50%) rotate(180deg);
+}
+
+/* Pengaturan khusus untuk Home dan My Account */
+.main-menu li:first-child button::after,
+.main-menu li:last-child button::after {
+    display: none;
+}
+
+/* Tanda panah khusus untuk Categories */
+.categories-wrapper button[value="categories"] {
+    position: relative;
+    padding-right: 24px !important;
+}
+
+.categories-wrapper button[value="categories"]::after {
+    content: '▾';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.5s, opacity 0.5s;
+    opacity: 0;
+}
+
+/* Tampilkan tanda panah Categories saat hover */
+.categories-wrapper:hover button[value="categories"]::after {
+    opacity: 1;
+    transform: translateY(-50%) rotate(180deg);
+}
+
+
+@media (max-width: 768px) {
+    /* Tampilkan tanda panah secara default pada mobile */
+    .dropdown .dropbtn::after,
+    .categories-wrapper button[value="categories"]::after {
+        opacity: 1;
+        transform: translateY(-50%) rotate(0deg);
+    }
+    
+    .dropdown:hover .dropbtn::after,
+    .categories-wrapper:hover button[value="categories"]::after {
+        transform: translateY(-50%) rotate(180deg);
+    }
+    
+}
+
+/* Navbar responsive styles */
+.bi-list, .bi-x {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .bi-list {
+        display: block;
+    }
+
+    .main-menu {
+        position: fixed;
+        top: 0;
+        right: -250px; /* Sembunyikan menu ke kanan */
+        height: 100vh;
+        width: 250px;
+        background: #0A3697;
+        padding-top: 50px;
+        z-index: 999;
+        transition: 0.5s;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .main-menu .bi-x {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 25px;
+    }
+
+    .main-menu li {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .main-menu button {
+        width: 100%;
+        text-align: left;
+        padding: 12px 20px;
+    }
+
+    .dropdown-content {
+        position: static;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.1);
+        box-shadow: none;
+    }
+
+    .dropdown-content button {
+        color: white !important;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: none; /* Override hover behavior */
+    }
+
+    .dropdown.active .dropdown-content {
+        display: block; /* Show on click instead */
+    }
+}
