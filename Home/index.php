@@ -56,57 +56,54 @@
         </div>
 
         <?php
-$page = isset($_POST['page']) ? $_POST['page'] : 'home'; 
+$page = isset($_POST['page']) ? $_POST['page'] : 'home';
 
 switch ($page) {
     // Home
     case 'home':
-        include 'home.php';
+        include 'services/home.php';
         break;
 
     // Collections
     case 'collections':
-        include 'C:\xampp\htdocs\E-Library\E-Library-AKSA\NavContent\resources/resources.php';
+        include 'resources/catalog.php';
         break;
     case 'catalog':
-        include 'NavContent/resources/catalog.php';
+        include 'resources/catalog.php';
         break;
-    case 'new-arrivals':
-        include 'NavContent\resources/new-arrivals.php';
+    case 'new-books':
+        include 'resources/new-arrivals.php';
         break;
     case 'popular-books':
-        include 'C:\xampp\htdocs\E-Library\E-Library-AKSA\NavContent\resources/popular-books.php';
+        include 'resources/popular-books.php';
         break;
     case 'recommendations':
-        include 'NavContent/resources/recommendations.php';
+        include 'resources/recommended.php';
         break;
     case 'journals':
-        include 'C:\xampp\htdocs\E-Library\E-Library-AKSA\NavContent\resources/journals.php';
+        include 'resources/journals.php';
         break;
-    case 'research-papers':
-        include 'NavContent/resources/research-papers.php';
+    case 'scientific-papers':
+        include 'resources/research-papers.php';
         break;
-    case 'theses':
-        include 'NavContent/resources/theses.php';
+    case 'thesis':
+        include 'resources/theses.php';
         break;
 
     // Services
-    case 'services':
-        include 'NavContent/services/services.php';
-        break;
     case 'borrowing':
-        include 'NavContent\services/borrowing.php';
+        include 'services/borrowing.php';
         break;
     case 'returning':
-        include 'NavContent\services/returning.php';
+        include 'services/returning.php';
         break;
     case 'reading-room':
-        include 'NavContent\services/reading-rooms.php';
+        include 'services/reading-room.php';
         break;
 
     // Account
     case 'account':
-        include 'NavContent/account.php';
+        include 'services/account.php';
         break;
 
     // Register/Login
@@ -119,12 +116,7 @@ switch ($page) {
 
     // Default page
     default:
-        include 'home.php';
+        include 'services/home.php';
         break;
 }
 ?>
-
-
-    <script src="script.js"></script>
-</body>
-</html>
