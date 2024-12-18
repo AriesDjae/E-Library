@@ -21,14 +21,14 @@ CREATE TABLE IF NOT EXISTS `anggota` (
   `Status` ENUM('Aktif', 'Nonaktif') NOT NULL,
   `Username` VARCHAR(100) NOT NULL UNIQUE,
   `Password` VARCHAR(255) NOT NULL,
-  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID_Anggota`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Tabel petugas
 CREATE TABLE IF NOT EXISTS `petugas` (
   `ID_Petugas` INT AUTO_INCREMENT NOT NULL,
-  `Nama_Petugas` VARCHAR(100) NOT NULL,
+  `Nama` VARCHAR(100) NOT NULL,
   `No_Telepon` VARCHAR(15) NOT NULL,
   `Status` ENUM('Aktif', 'Nonaktif') NOT NULL DEFAULT 'Aktif',
   `Username` VARCHAR(100) NOT NULL UNIQUE,

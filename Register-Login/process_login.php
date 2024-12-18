@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($is_petugas) {
                 header("Location: ../Dashboard/index.php");
             } else {
-                header("Location: ../Home/home.php");
+                header("Location: ../Home/index.php");
             }
             exit();
         }

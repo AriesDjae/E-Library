@@ -61,7 +61,7 @@ $page = isset($_POST['page']) ? $_POST['page'] : 'home';
 switch ($page) {
     // Home
     case 'home':
-        include 'services/home.php';
+        include 'home.php';
         break;
 
     // Collections

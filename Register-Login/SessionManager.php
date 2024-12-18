@@ -50,7 +50,7 @@ class SessionManager {
         $_SESSION['user_type'] = $user_type;
         $_SESSION['user_id'] = $user_id;
         $_SESSION['email'] = $user_data['Email'];
-        $_SESSION['nama'] = $user_type === 'petugas' ? $user_data['Nama_Petugas'] : $user_data['Nama'];
+        $_SESSION['nama'] = $user_type === 'petugas' ? $user_data['Nama'] : $user_data['Nama'];
         $_SESSION['status'] = $user_data['Status'];
         $_SESSION['last_activity'] = time();
     }
