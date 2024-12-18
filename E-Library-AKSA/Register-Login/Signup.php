@@ -62,7 +62,7 @@
                     </label>
                 <input type="text" name="tipe" id="tipe" placeholder="Tipe Mahasiswa/Dosen/Pengunjung">
             </div>
-            <button type="submit">Sing Up</button>
+            <button type="submit">Sign Up</button>
         </form>
         <p>Sudah mempunyai akun? <a href="Login.php">login</a></p>
     </div>
