@@ -1,4 +1,5 @@
 <?php
+require 'db.php';
 class SessionManager {
     private $conn;
     private $session_lifetime = 7200; // 2 jam dalam detik

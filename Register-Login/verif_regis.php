@@ -26,7 +26,7 @@ $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
 // Menyimpan data ke database berdasarkan tipe
 if ($tipe === 'Petugas') {
-    $sql = "INSERT INTO petugas (Nama_Petugas, Username, Email, Password, No_Telepon, Status) 
+    $sql = "INSERT INTO petugas (Nama, Username, Email, Password, No_Telepon, Status) 
             VALUES (?, ?, ?, ?, ?, 'Aktif')";
 } else {
     $sql = "INSERT INTO anggota (Nama, Username, Email, Password, No_Telepon, Alamat, Tipe, Status) 
