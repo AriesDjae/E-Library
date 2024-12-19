@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    padding: 20px;
+}
+
+footer {
+    background-color: #0A3697; /* Warna latar belakang footer */
+    color: white; /* Warna teks */
+    text-align: center; /* Teks rata tengah */
+    padding: 20px 0; /* Padding atas dan bawah */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 100%;
+}
+
+footer a {
+    color: #f1c40f; /* Warna link */
+    text-decoration: none; /* Menghilangkan garis bawah pada link */
+}
+
+footer a:hover {
+    text-decoration: underline; /* Menambahkan garis bawah saat link di-hover */
+}
+
+.footer-container {
+    max-width: 0 auto;
+    margin: 0 auto;
+    padding: 0 15px;
+}

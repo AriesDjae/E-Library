@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css?v=1.1">
     <link rel="stylesheet" href="contact.css?v=1.1">
+    <link rel="stylesheet" href="footer.css?v=1.1">
 </head>
 <body>
 
@@ -68,14 +69,24 @@
         <!-- Peta Lokasi -->
         <h2>Our Location</h2>
         <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.8710037644193!2d110.357049!3d-7.749987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59b3a4b6186f%3A0x1209ae547c8f3d0d!2sUniversitas%20Islam%20Indonesia!5e0!3m2!1sid!2sid!4v1702657000000!5m2!1sid!2sid"
-    width="600"
-    height="450"
-    style="border:0;"
-    allowfullscreen=""
-    loading="lazy">
-</iframe>
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.8710037644193!2d110.357049!3d-7.749987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59b3a4b6186f%3A0x1209ae547c8f3d0d!2sUniversitas%20Islam%20Indonesia!5e0!3m2!1sid!2sid!4v1702657000000!5m2!1sid!2sid"
+        width="600"
+        height="450"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy">
+        </iframe>
+        <!-- Footer -->
+        <footer>
+            <div class="footer-container">
+                <p>&copy; 2024 E-Library. Semua hak cipta dilindungi.</p>
+            </div>
+        </footer>
 
-    </div>
+    </body>
+    </html>
+
+
+        </div>
 </body>
 </html>
