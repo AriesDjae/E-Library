@@ -38,7 +38,6 @@ CREATE TABLE IF NOT EXISTS `petugas` (
   PRIMARY KEY (`ID_Petugas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
 -- Tabel buku
 CREATE TABLE IF NOT EXISTS `buku` (
   `ID_Buku` INT AUTO_INCREMENT NOT NULL,
@@ -113,6 +112,7 @@ CREATE TABLE IF NOT EXISTS `reading_room_booking` (
   CONSTRAINT `FK_User_Booking` FOREIGN KEY (`ID_Anggota`) REFERENCES `anggota` (`ID_Anggota`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- Tabel user_sessions
 CREATE TABLE IF NOT EXISTS `user_sessions` (
     `session_id` VARCHAR(255) PRIMARY KEY,
     `user_type` ENUM('Anggota', 'Petugas') NOT NULL,  -- Menambahkan tipe pengguna yang hanya bisa 'Anggota' atau 'Petugas'
