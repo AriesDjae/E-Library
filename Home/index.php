@@ -69,7 +69,7 @@ switch ($page) {
         include 'resources/catalog.php';
         break;
     case 'catalog':
-        include 'resources/catalog.php';
+        include 'catalog.php';
         break;
     case 'new-books':
         include 'resources/new-arrivals.php';

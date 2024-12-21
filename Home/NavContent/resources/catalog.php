@@ -1,31 +1,56 @@
-<?php  
+<?php 
 // Koneksi ke database
-$servername = "localhost";  // Ganti dengan host Anda
-$username = "root";         // Ganti dengan username MySQL Anda
-$password = "";             // Ganti dengan password MySQL Anda
-$dbname = "e-library";      // Nama database
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "e-library";
 
-// Membuat koneksi
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Mengecek koneksi
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Koneksi gagal: " . $conn->connect_error);
 }
 
-// Mendapatkan halaman saat ini untuk pagination
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$items_per_page = 8;  // Jumlah buku per halaman
-$offset = ($page - 1) * $items_per_page;
+// Tangkap parameter kategori
+$category = isset($_GET['category']) ? $_GET['category'] : 'all';
+$is_ajax = isset($_GET['ajax']) && $_GET['ajax'] === '1';
 
-// Query untuk mengambil data buku dengan pagination
-$sql = "SELECT ID_Buku, Judul, Cover_Image FROM buku LIMIT $offset, $items_per_page";
-$result = $conn->query($sql);
+// Query untuk kategori
+$categories_result = $conn->query("SELECT ID_Kategori, Nama_Kategori FROM kategori");
+if (!$categories_result) {
+    die("Query kategori error: " . $conn->error);
+}
 
-// Query untuk mendapatkan total jumlah buku
-$total_books_result = $conn->query("SELECT COUNT(*) AS total FROM buku");
-$total_books = $total_books_result->fetch_assoc()['total'];
-$total_pages = ceil($total_books / $items_per_page);
+// Query untuk buku
+if ($category === 'all') {
+    $books_query = "SELECT ID_Buku, Judul, Cover_Image FROM buku";
+} else {
+    $books_query = "SELECT ID_Buku, Judul, Cover_Image FROM buku WHERE ID_Kategori = ?";
+}
+$stmt = $conn->prepare($books_query);
+if ($category !== 'all') {
+    $stmt->bind_param("i", $category);
+}
+$stmt->execute();
+$books_result = $stmt->get_result();
+
+// Jika permintaan AJAX, kirim data JSON
+if ($is_ajax) {
+    header('Content-Type: application/json');
+    $books = [];
+    while ($book = $books_result->fetch_assoc()) {
+        $cover_image = !empty($book['Cover_Image']) && file_exists("img/" . $book['Cover_Image']) 
+            ? "img/" . $book['Cover_Image'] 
+            : "img/default_cover.jpg";
+        $books[] = [
+            'ID_Buku' => $book['ID_Buku'],
+            'Judul' => $book['Judul'],
+            'Cover_Image' => $cover_image
+        ];
+    }
+    echo json_encode($books);
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -34,155 +59,203 @@ $total_pages = ceil($total_books / $items_per_page);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catalog Buku E-Library</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+        /* Reset some default styles */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fb;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            padding: 20px;
+            justify-content: flex-start;
+            padding-bottom: 100px; /* Menambahkan padding bawah agar halaman lebih turun */
+            margin-top: 80px; /* Menambahkan margin-top untuk menghindari navbar yang menutupi */
         }
 
-        header {
-            background-color: #1a73e8;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+            margin-bottom: 40px; /* Menambahkan jarak lebih besar di bawah container */
+        }
+
+        .sidebar {
+            width: 230px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 20px;
+            margin-right: 20px;
+            max-height: 80vh; /* Membatasi tinggi sidebar agar tidak terlalu panjang */
+            overflow-y: auto; /* Menambahkan scroll jika konten terlalu panjang */
+        }
+
+        .sidebar h3 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            padding: 8px;
+            display: block;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #e1e1e1;
+            color: #1a73e8;
         }
 
         .catalog {
-            display: flex;
-            flex-wrap: wrap;
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 20px;
-            justify-content: center;
-            margin: 20px;
+            padding: 20px;
+            width: 100%;
+            margin-top: 30px; /* Menambahkan jarak lebih besar di atas katalog */
         }
 
         .book {
-            width: 220px;
-            text-align: center;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 10px;
             background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 400px; /* Sesuaikan ukuran agar judul dan gambar lebih terlihat */
         }
 
         .book:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
         }
 
         .book img {
             width: 100%;
-            height: auto;
-            border-radius: 5px;
-            object-fit: cover;
-        }
-
-        .book a {
-            text-decoration: none;
-            color: inherit; /* Warna teks tetap sama */
+            height: 300px; /* Sesuaikan dengan ukuran gambar */
+            object-fit: cover; /* Menjamin gambar mengisi elemen tanpa terpotong */
+            border-bottom: 1px solid #eee;
         }
 
         .book h3 {
-            font-size: 16px;
-            margin-top: 10px;
+            font-size: 16px; /* Menyesuaikan ukuran font agar judul lebih terlihat */
             color: #333;
-        }
-
-        .pagination {
+            margin: 10px;
+            padding: 0 10px;
             text-align: center;
-            margin-top: 20px;
+            flex-grow: 1; /* Agar judul dapat mengambil ruang yang ada */
+            word-wrap: break-word; /* Agar teks panjang dibungkus dengan benar */
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
 
-        .pagination a {
-            text-decoration: none;
-            padding: 10px;
-            margin: 0 5px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            color: #1a73e8;
-        }
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
 
-        .pagination a.active {
-            background-color: #1a73e8;
-            color: white;
-        }
+            .sidebar {
+                width: 100%;
+                margin-bottom: 15px;
+            }
 
-        .pagination a:hover {
-            background-color: #ddd;
-        }
-
-        .search-box {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .search-box input {
-            padding: 10px;
-            width: 300px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
+            .catalog {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-
-<header>
-    <h1>Catalog Buku E-Library</h1>
-</header>
-
-<div class="search-box">
-    <input type="text" id="searchInput" placeholder="Cari Buku..." onkeyup="searchBooks()">
-</div>
-
-<div class="catalog" id="bookCatalog">
-    <?php
-    // Mengecek apakah ada hasil dari query
-    if ($result->num_rows > 0) {
-        // Menampilkan data setiap buku
-        while($row = $result->fetch_assoc()) {
-            echo '<div class="book">';
-            echo '<a href="NavContent/resources/detail_buku.php?id=' . $row['ID_Buku'] . '">';
-            echo '<img src="img/' . $row['Cover_Image'] . '" alt="' . $row['Judul'] . '">';
-            echo '<h3>' . $row['Judul'] . '</h3>';
-            echo '</a>';
-            echo '</div>';
-        }
-    } else {
-        echo "<p>No books available.</p>";
-    }
-    ?>
-</div>
-
-<div class="pagination">
-    <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
-        <?php if ($i != 1) : // Sembunyikan tombol halaman 1 ?>
-            <a href="?page=<?= $i; ?>" class="<?= $i == $page ? 'active' : ''; ?>"><?= $i; ?></a>
+<div class="container">
+    <div class="sidebar">
+        <h3>Kategori</h3>
+        <ul>
+            <li><a data-category="all" class="category-link">Semua Buku</a></li>
+            <?php while ($category_row = $categories_result->fetch_assoc()): ?>
+                <li><a data-category="<?php echo $category_row['ID_Kategori']; ?>" class="category-link">
+                    <?php echo $category_row['Nama_Kategori']; ?>
+                </a></li>
+            <?php endwhile; ?>
+        </ul>
+    </div>
+    <div class="catalog" id="catalog">
+        <?php if ($books_result->num_rows > 0): ?>
+            <?php while ($book = $books_result->fetch_assoc()): ?>
+                <div class="book">
+                    <a href="NavContent/resources/detail_buku.php?id=<?php echo $book['ID_Buku']; ?>">
+                        <img src="<?php echo !empty($book['Cover_Image']) && file_exists("img/" . $book['Cover_Image']) 
+                            ? "img/" . $book['Cover_Image'] 
+                            : "img/default_cover.jpg"; ?>" alt="<?php echo htmlspecialchars($book['Judul']); ?>">
+                        <h3><?php echo htmlspecialchars($book['Judul']); ?></h3>
+                    </a>
+                </div>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p>Tidak ada buku yang tersedia.</p>
         <?php endif; ?>
-    <?php endfor; ?>
+    </div>
 </div>
 
 <script>
-    // Fungsi untuk mencari buku secara langsung tanpa reload
-    function searchBooks() {
-        const input = document.getElementById("searchInput").value.toLowerCase();
-        const books = document.querySelectorAll(".book");
-        books.forEach(book => {
-            const title = book.querySelector("h3").innerText.toLowerCase();
-            if (title.includes(input)) {
-                book.style.display = "block";
-            } else {
-                book.style.display = "none";
-            }
-        });
-    }
-</script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const categoryLinks = document.querySelectorAll(".category-link");
+        const catalogContainer = document.getElementById("catalog");
 
+        categoryLinks.forEach(link => {
+            link.addEventListener("click", async (event) => {
+                event.preventDefault();
+                const category = event.target.getAttribute("data-category");
+                try {
+                    const response = await fetch(`catalog.php?category=${category}&ajax=1`);
+                    const books = await response.json();
+
+                    catalogContainer.innerHTML = books.length
+                        ? books.map(book => ` 
+                            <div class="book">
+                                <a href="detail_buku.php?id=${book.ID_Buku}">
+                                    <img src="${book.Cover_Image}" alt="${book.Judul}">
+                                    <h3>${book.Judul}</h3>
+                                </a>
+                            </div>
+                        `).join('')
+                        : '<p>Tidak ada buku yang tersedia.</p>';
+                } catch (error) {
+                    console.error("Error fetching books:", error);
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
-
 <?php
+$stmt->close();
 $conn->close();
 ?>
