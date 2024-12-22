@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css?v=1.1">
-    <link rel="stylesheet" href="contact.css?v=1.1">
-    <link rel="stylesheet" href="footer.css?v=1.1">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="footer.css">
 </head>
 <body>
 
@@ -76,6 +76,36 @@
         allowfullscreen=""
         loading="lazy">
         </iframe>
+        <!-- Contact -->
+
+        <div id="contact">
+        <div class="container-contact">
+          <div class="row">
+            <div class="contact-left">
+              <h1 class="sub-title">Contact Me</h1>
+              <p><i class="bi bi-send"></i>ariesdjaenuri24@gmail.com</p>
+              <p><i class="bi bi-telephone"></i>085338557296</p>
+              <div class="social-icons">
+                <a href="https://facebook.com/"><i class="bi bi-facebook"></i></a>
+                <a href="https://twitter.com/"><i class="bi bi-twitter-x"></i></a>
+                <a href="https://instagram.com/"><i class="bi bi-instagram"></i></a>
+                <a href="https://linkedin.com/"><i class="bi bi-linkedin"></i></a>
+              </div>
+              <a href="src/CV Aris sementara.pdf" download class="btn cv">Download CV</a>
+            </div>
+            <div class="contact-right">
+              <form name="submit-to-google-sheet">
+                <input type="text" name="Name" placeholder="Your name" required>
+                <input type="email" name="Email" placeholder="Your email" required>
+                <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                <button type="submit" class="btn submit">Submit</button>
+              </form>
+              <span id="msg"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
         <!-- Footer -->
         <footer>
             <div class="footer-container">
@@ -83,10 +113,6 @@
             </div>
         </footer>
 
+        <script src="script.js"></script>
     </body>
     </html>
-
-
-        </div>
-</body>
-</html>
