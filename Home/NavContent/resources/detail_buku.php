@@ -52,7 +52,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         }
 
         header {
-            background-color: #0A3697; /* Warna solid */
+            background-color: #0A3697;
             color: white;
             text-align: center;
             padding: 30px 0;
@@ -105,12 +105,12 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         }
 
         .book-info strong {
-            color: #0A3697; /* Tema warna */
+            color: #0A3697;
         }
 
         .back-btn {
             text-decoration: none;
-            background-color: #0A3697; /* Warna solid */
+            background-color: #0A3697;
             color: white;
             padding: 12px 25px;
             text-align: center;
@@ -122,9 +122,30 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         }
 
         .back-btn:hover {
-            background-color: #082C72; /* Warna lebih gelap saat hover */
+            background-color: #082C72;
             transform: translateY(-2px);
             transition: 0.3s;
+        }
+
+        .full-description {
+            margin-top: 20px;
+            display: none; /* Hidden by default */
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .toggle-description {
+            cursor: pointer;
+            color: #0A3697;
+            font-weight: 600;
+            margin-top: 10px;
+            text-decoration: underline;
+            background: none;
+            border: none;
+            font-size: 16px;
+            padding: 0;
         }
 
         @media (max-width: 768px) {
@@ -149,7 +170,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 <div class="container">
     <div class="book-details">
         <div class="book-image">
-            <img src="http://localhost/E-Library/E-Library-AKSA/Home/img/<?= htmlspecialchars($row['Cover_Image']); ?>" alt="<?= htmlspecialchars($row['Judul']); ?>">
+            <img src="http://localhost/E-Library/home/img/<?= htmlspecialchars($row['Cover_Image']); ?>" alt="<?= htmlspecialchars($row['Judul']); ?>">
         </div>
         <div class="book-info">
             <h2><?= htmlspecialchars($row['Judul']); ?></h2>
@@ -159,14 +180,34 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             <p><strong>Kategori:</strong> <?= htmlspecialchars($row['Nama_Kategori']); ?></p>
             <p><strong>Lokasi Rak:</strong> <?= htmlspecialchars($row['Lokasi_Rak']); ?></p>
             <p><strong>Stok:</strong> <?= htmlspecialchars($row['Stok']); ?> buku</p>
-            <p><strong>Deskripsi:</strong><br> <?= nl2br(htmlspecialchars($row['Deskripsi'])); ?></p>
-            <a href="javascript:history.go(-1)" class="back-btn">Kembali ke Katalog</a>
+            <button class="toggle-description" onclick="toggleDescription()">Full Description</button>
+            <div id="full-description" class="full-description">
+                <?= nl2br(htmlspecialchars($row['Deskripsi'])); ?>
+            </div>
+            <a href="javascript:history.go(-1)" class="back-btn">Return to catalog</a>
         </div>
     </div>
 </div>
 
+<script>
+    function toggleDescription() {
+        const desc = document.getElementById('full-description');
+        const toggleButton = document.querySelector('.toggle-description');
+
+        // Check the current display property and toggle it
+        if (desc.style.display === 'block') {
+            desc.style.display = 'none'; // Hide description
+            toggleButton.textContent = 'Full Description'; // Change button text
+        } else {
+            desc.style.display = 'block'; // Show description
+            toggleButton.textContent = 'Hide Description'; // Change button text
+        }
+    }
+</script>
+
 </body>
 </html>
+
 <?php
 $conn->close();
 ?>
