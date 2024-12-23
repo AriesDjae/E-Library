@@ -70,32 +70,6 @@
         </div>
     </div>
     <div class="contact-page">
-        <h2>Contact Us</h2>
-        <div class="contact-columns">
-            <!-- Kolom 1 -->
-            <div class="column">
-                <h3>⚙ Jam Buka</h3>
-                <p>Senin - Jumat: 08.00 - 18.00 WIB</p>
-                <p>Sabtu: 09.00 - 16.00 WIB</p>
-                <p>Minggu: Tutup</p>
-            </div>
-            <!-- Kolom 2 -->
-            <div class="column">
-                <h3>🏠 Alamat</h3>
-                <p>Perpustakaan Kampus<br> Gedung Crystal of Knowledge<br> Kampus , DIY</p>
-            </div>
-            <!-- Kolom 3 -->
-            <div class="column">
-                <h3>✉ Kontak</h3>
-                <p>Telp: 021-123456</p>
-                <p>Email: <a href="mailto:library@ui.ac.id">library@k.ac.id</a></p>
-            </div>
-            <!-- Kolom 4 -->
-            <div class="column flash">
-                <h3>💡 Flash</h3>
-                <p>"Edmun Burke - Aku rasa, televisi itu sangat mendidik."</p>
-            </div>
-        </div>
         <!-- Peta Lokasi -->
         <h2>Our Location</h2>
         <iframe
@@ -122,38 +96,6 @@
                 <a href="https://linkedin.com/"><i class="bi bi-linkedin"></i></a>
               </div>
               <a href="src/CV Aris sementara.pdf" download class="btn cv">Download CV</a>
-            </div>
-            <div class="contact-right">
-                <form action="contactform.php" method="POST" class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <input type="text" name="name" placeholder="Nama Lengkap" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="Email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="tel" name="phone" placeholder="Nomor Telepon" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <select name="subject" required>
-                            <option value="">Pilih Subjek</option>
-                            <option value="pertanyaan">Pertanyaan</option>
-                            <option value="saran">Saran</option>
-                            <option value="keluhan">Keluhan</option>
-                            <option value="lainnya">Lainnya</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <textarea name="message" rows="6" placeholder="Pesan Anda" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn submit-btn">Kirim Pesan</button>
-                </form>
-                <div id="form-message"></div>
             </div>
           </div>
         </div>
