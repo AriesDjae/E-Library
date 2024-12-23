@@ -134,7 +134,7 @@ CREATE TABLE contact_messages (
     message TEXT NOT NULL,
     created_at DATETIME NOT NULL,
     INDEX idx_created_at (created_at)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;    
 
 
 -- Tambahkan ruangan secara otomatis
