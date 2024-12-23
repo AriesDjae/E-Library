@@ -185,24 +185,7 @@
         </iframe>
         <!-- Contact -->
 
-        <div id="contact">
-        <div class="container-contact">
-          <div class="row">
-            <div class="contact-left">
-              <h1 class="sub-title">Contact Me</h1>
-              <p><i class="bi bi-send"></i>ariesdjaenuri24@gmail.com</p>
-              <p><i class="bi bi-telephone"></i>085338557296</p>
-              <div class="social-icons">
-                <a href="https://facebook.com/"><i class="bi bi-facebook"></i></a>
-                <a href="https://twitter.com/"><i class="bi bi-twitter-x"></i></a>
-                <a href="https://instagram.com/"><i class="bi bi-instagram"></i></a>
-                <a href="https://linkedin.com/"><i class="bi bi-linkedin"></i></a>
-              </div>
-              <a href="src/CV Aris sementara.pdf" download class="btn cv">Download CV</a>
-            </div>
-          </div>
-        </div>
-      </div>
+    </div>
       
     </div> <!-- Close your main content div -->
     

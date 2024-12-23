@@ -1,3 +1,12 @@
+<?php
+session_start();
+$errors = $_SESSION['registration_errors'] ?? [];
+$old_input = $_SESSION['old_input'] ?? [];
+// Clear the session messages after retrieving them
+unset($_SESSION['registration_errors']);
+unset($_SESSION['old_input']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,25 +20,23 @@
     <!-- Skema untuk pengunjung karena email kampus mahasiswa dan dosen sudah terdaftar -->
     <div class="wrapper">
         <h1>Sign Up</h1>
-        <p id="error-message"></p>
+        <div id="error-messages" class="alert-container"></div>
         <form id="form" action="verif_regis.php" method="post">
             <div>
                 <label for="namalengkap">
                     <span>A</span>
                 </label>
-                <input type="text" name="namalengkap" id="namalengkap" placeholder="Nama Lengkap">
-            </div>
-            <div>
+                <input type="text" name="namalengkap" placeholder="Name">
                 <label for="username">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Z"/></svg>
                 </label>
-                <input required type="text" name="username" id="username" placeholder="Username">
+                <input type="text" name="username" placeholder="Username" value="<?php echo htmlspecialchars($old_input['username'] ?? ''); ?>" required>
             </div>
             <div>
                 <label for="email-input">
                     <span>@</span>
                 </label>
-                <input type="email" name="email" id="email-input" placeholder="Email">
+                <input type="email" name="email" placeholder="Email" value="<?php echo htmlspecialchars($old_input['email'] ?? ''); ?>" required>
             </div>
             <div>
                 <label for="password-input">
@@ -66,6 +73,82 @@
         </form>
         <p>Sudah mempunyai akun? <a href="Login.php">login</a></p>
     </div>
+
     <!-- <script type="text/javascript" src="validation.js" defer></script> -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('form');
+            const errorMessage = document.getElementById('error-message');
+            const notification = document.getElementById('notification');
+            
+            // Display PHP errors if any
+            <?php if (!empty($errors)): ?>
+                showNotification('<?php echo implode(", ", $errors); ?>', 'error');
+            <?php endif; ?>
+
+            // Real-time validation
+            const usernameInput = document.getElementById('username');
+            const emailInput = document.getElementById('email-input');
+            let timeoutId;
+
+            usernameInput.addEventListener('input', function() {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => checkAvailability('username', this.value), 500);
+            });
+
+            emailInput.addEventListener('input', function() {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => checkAvailability('email', this.value), 500);
+            });
+
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                const password = document.getElementById('password-input').value;
+                const repeatPassword = document.getElementById('repeat-password-input').value;
+
+                if (password !== repeatPassword) {
+                    e.preventDefault();
+                    showNotification('Password tidak cocok!', 'error');
+                    return;
+                }
+
+                // Additional validation can be added here
+            });
+        });
+
+        function checkAvailability(field, value) {
+            if (!value) return;
+
+            fetch('check_availability.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `field=${field}&value=${encodeURIComponent(value)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (!data.available) {
+                    showNotification(`${field === 'username' ? 'Username' : 'Email'} sudah digunakan`, 'error');
+                    document.getElementById(field === 'username' ? 'username' : 'email-input').classList.add('input-error');
+                } else {
+                    document.getElementById(field === 'username' ? 'username' : 'email-input').classList.remove('input-error');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `alert alert-${type}`;
+            notification.style.display = 'block';
+
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000); // Hide after 5 seconds
+        }
+    </script>
+
 </body>
 </html>
