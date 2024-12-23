@@ -8,6 +8,7 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     background: linear-gradient(180deg, rgba(227, 233, 255, 0) 0%, #E3E9FF 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    margin-bottom: 60px; /* Adjust this value based on your footer height */
 }
 
 .container {

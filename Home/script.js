@@ -28,3 +28,13 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbyz-0Qfi0-N3R6ZiJa70k
     })
       .catch(error => console.error('Error!', error.message));
   })
+
+// Smooth scroll for contact button
+document.querySelector('.contact-float-button').addEventListener('click', function(e) {
+    e.preventDefault();
+    const contactSection = document.querySelector('#contact');
+    contactSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+    });
+});
