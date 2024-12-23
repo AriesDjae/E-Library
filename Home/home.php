@@ -48,37 +48,37 @@
         <div class="card-container">
             <div class="card">
                 <img src="/E-Library/Home/img/bintang.jpg" alt="bintang">
-                <h3>The Hidden Mystery Behind</h3>
+                <h3>Bintang</h3>
+                <p>Tereliye</p>
+                <button>Show Details</button>
+            </div>
+            <div class="card">
+                <img src="/E-Library/Home/img/bulan.jpg" alt="Book Cover">
+                <h3>Bulan</h3>
+                <p>Tereliye</p>
+                <button>Show Details</button>
+            </div>
+            <div class="card">
+                <img src="/E-Library/Home/img/halfblood.jpg" alt="Book Cover">
+                <h3>Halfblood</h3>
+                <p>J.K Rowling></p>
+                <button>Show Details</button>
+            </div>
+            <div class="card">
+                <img src="/E-Library/Home/img/why.jpg" alt="Book Cover">
+                <h3>Why</h3>
                 <p>Wilson</p>
                 <button>Show Details</button>
             </div>
             <div class="card">
-                <img src="/E-Library/Home/img/bintang.jpg" alt="Book Cover">
-                <h3>The Hidden Mystery Behind</h3>
-                <p>Wilson</p>
+                <img src="/E-Library/Home/img/matahari.jpg" alt="bintang">
+                <h3>Matahari</h3>
+                <p>Tereliye</p>
                 <button>Show Details</button>
             </div>
             <div class="card">
-                <img src="/E-Library/Home/img/bintang.jpg" alt="Book Cover">
-                <h3>The Hidden Mystery Behind</h3>
-                <p>Wilson</p>
-                <button>Show Details</button>
-            </div>
-            <div class="card">
-                <img src="/E-Library/Home/img/bintang.jpg" alt="Book Cover">
-                <h3>The Hidden Mystery Behind</h3>
-                <p>Wilson</p>
-                <button>Show Details</button>
-            </div>
-            <div class="card">
-                <img src="/E-Library/Home/img/bintang.jpg" alt="bintang">
-                <h3>The Hidden Mystery Behind</h3>
-                <p>Wilson</p>
-                <button>Show Details</button>
-            </div>
-            <div class="card">
-                <img src="/E-Library/Home/img/bintang.jpg" alt="Book Cover">
-                <h3>The Hidden Mystery Behind</h3>
+                <img src="/E-Library/Home/img/why.jpg" alt="Book Cover">
+                <h3>Why</h3>
                 <p>Wilson</p>
                 <button>Show Details</button>
             </div>
