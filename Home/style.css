@@ -1,3 +1,5 @@
+
+
 * {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -38,6 +40,7 @@ body {
     z-index: 1;
 }
 
+
 .logo {
     margin-right: 2rem;
 }
@@ -53,6 +56,8 @@ body {
     width: 50%;
     height: 50%;
 }
+
+
 
 .hero {
     min-height: 100vh;
@@ -114,6 +119,9 @@ body {
     color: #E4EAFF;
     font-size: 1rem;
 }
+
+
+
 
 /* Search Container */
 .search-container {
@@ -257,6 +265,8 @@ body {
     margin-top: 100px; /* Added: adjust content position */
     transform: translateY(20px); /* Mulai sedikit lebih rendah */
     transition: opacity 0.5s ease, transform 0.5s ease; /* Transisi untuk animasi */
+
+    
 }
 
 .content h2 {
@@ -264,7 +274,6 @@ body {
     margin-bottom: 5rem;
     font-size: 40px;
 }
-
 .card-container {
     display: flex;
     gap: 25px;

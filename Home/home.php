@@ -5,167 +5,166 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-     <!-- Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700&
     display=swap" rel="stylesheet">
 
     <!-- Feather Icons -->
-    <script src="https://unpkg.com/feather-icons"></script>
+     <script src="https://unpkg.com/feather-icons"></script>
 
-<!-- My Style -->
-<link rel="stylesheet" href="style.css?v=1.1">
-<link rel="stylesheet" href="contact.css?v=1.1">
-<link rel="stylesheet" href="footer.css?v=1.1">
+    <!-- My Style -->
+    <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="stylesheet" href="contact.css?v=1.1">
+    <link rel="stylesheet" href="footer.css?v=1.1">
 </head>
 <body>
 
 <!-- Feather Icons -->
-<script>
-feather.replace()
+ <script>
+    feather.replace()
 </script>
 
 <div class="hero-image">
-<section class="hero" id="home">
-<main class="text">
-<p>let's make the best investments</p>
-<h1>There is no</h1>
-<h1>friend as loyal</h1>
-<h1>as a book</h1>
-<p1>Read. Listen. Learn. Repeat</p1>
+    <section class="hero" id="home">
+    <main class="text">
+    <p>let's make the best investments</p>
+    <h1>There is no</h1>
+    <h1>friend as loyal</h1>
+    <h1>as a book</h1>
+    <p1>Read. Listen. Learn. Repeat</p1>
 </main>
 </section>
 </div>
-    <div class="content">
-        <section id="collectin" class="collection">
-            <h2>Collections</h2>
-        </section>
-        <div class="card-container">
-    <div class="card">
-        <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="bintang">
-        <h3>The Hidden Mystery Behind</h3>
-        <p>Wilson</p>
-        <button>Show Details</button>
-    </div>
-    <div class="card">
-        <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
-        <h3>The Hidden Mystery Behind</h3>
-        <p>Wilson</p>
-        <button>Show Details</button>
-    </div>
-    <div class="card">
-        <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
-        <h3>The Hidden Mystery Behind</h3>
-        <p>Wilson</p>
-        <button>Show Details</button>
-    </div>
-    <div class="card">
-        <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
-        <h3>The Hidden Mystery Behind</h3>
-        <p>Wilson</p>
-        <button>Show Details</button>
-    </div>
-    <div class="card">
-        <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="bintang">
-        <h3>The Hidden Mystery Behind</h3>
-        <p>Wilson</p>
-        <button>Show Details</button>
-    </div>
-    <div class="card">
-        <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
-        <h3>The Hidden Mystery Behind</h3>
-        <p>Wilson</p>
-        <button>Show Details</button>
-    </div>
-    <div class="card">
-        <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
-        <h3>The Hidden Mystery Behind</h3>
-        <p>Wilson</p>
-        <button>Show Details</button>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="category-book">
-    <div class="top-container">
-    <h2>Top Categories Book</h2>
-    <div class="categories">
-        <div class="category">
-            <div class="circle">
-                <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Grow Flower">
-                <div class="dashed-circle"></div> <!-- Elemen untuk garis putus-putus -->
+        <div class="content">
+            <section id="collectin" class="collection">
+                <h2>Collections</h2>
+            </section>
+            <div class="card-container">
+        <div class="card">
+            <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="bintang">
+            <h3>The Hidden Mystery Behind</h3>
+            <p>Wilson</p>
+            <button>Show Details</button>
+        </div>
+        <div class="card">
+            <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+            <h3>The Hidden Mystery Behind</h3>
+            <p>Wilson</p>
+            <button>Show Details</button>
+        </div>
+        <div class="card">
+            <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+            <h3>The Hidden Mystery Behind</h3>
+            <p>Wilson</p>
+            <button>Show Details</button>
+        </div>
+        <div class="card">
+            <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+            <h3>The Hidden Mystery Behind</h3>
+            <p>Wilson</p>
+            <button>Show Details</button>
+        </div>
+        <div class="card">
+            <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="bintang">
+            <h3>The Hidden Mystery Behind</h3>
+            <p>Wilson</p>
+            <button>Show Details</button>
+        </div>
+        <div class="card">
+            <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+            <h3>The Hidden Mystery Behind</h3>
+            <p>Wilson</p>
+            <button>Show Details</button>
+        </div>
+        <div class="card">
+            <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+            <h3>The Hidden Mystery Behind</h3>
+            <p>Wilson</p>
+            <button>Show Details</button>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="category-book">
+        <div class="top-container">
+        <h2>Top Categories Book</h2>
+        <div class="categories">
+            <div class="category">
+                <div class="circle">
+                    <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Grow Flower">
+                    <div class="dashed-circle"></div> <!-- Elemen untuk garis putus-putus -->
+                </div>
+                <p class="category-name">Grow Flower (7)</p>
             </div>
-            <p class="category-name">Grow Flower (7)</p>
-        </div>
-        <div class="category">
-            <div class="circle">
-                <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Adventure Book">
-                <div class="dashed-circle"></div> <!-- Elemen untuk garis putus-putus -->
+            <div class="category">
+                <div class="circle">
+                    <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Adventure Book">
+                    <div class="dashed-circle"></div> <!-- Elemen untuk garis putus-putus -->
+                </div>
+                <p class="category-name">Adventure Book (4)</p>
             </div>
-            <p class="category-name">Adventure Book (4)</p>
-        </div>
-        <div class="category">
-            <div class="circle">
-                <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Romance Books">
-                <div class="dashed-circle"></div> <!-- Elemen untuk garis putus-putus -->
+            <div class="category">
+                <div class="circle">
+                    <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Romance Books">
+                    <div class="dashed-circle"></div> <!-- Elemen untuk garis putus-putus -->
+                </div>
+                <p class="category-name">Romance Books (80)</p>
             </div>
-            <p class="category-name">Romance Books (80)</p>
-        </div>
-        <div class="category">
-            <div class="circle">
-                <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Design Low Book">
-                <div class="dashed-circle"></div> <!-- Elemen untuk garis putus-putus -->
+            <div class="category">
+                <div class="circle">
+                    <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Design Low Book">
+                    <div class="dashed-circle"></div> <!-- Elemen untuk garis putus-putus -->
+                </div>
+                <p class="category-name">Design Low Book (6)</p>
             </div>
-            <p class="category-name">Design Low Book (6)</p>
-        </div>
-        <div class="category">
-            <div class="circle">
-                <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Safe Home">
-                <div class="dashed-circle"></div> <!-- Elemen untuk garis putus-putus -->
+            <div class="category">
+                <div class="circle">
+                    <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Safe Home">
+                    <div class="dashed-circle"></div> <!-- Elemen untuk garis putus-putus -->
+                </div>
+                <p class="category-name">Safe Home (5)</p>
             </div>
-            <p class="category-name">Safe Home (5)</p>
         </div>
     </div>
-</div>
-</div>
-<div class="recomen">
-    <h1>Book Recommendations</h1>
-    <div class="book-grid">
-        <div class="book-card">
-            <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
-            <p class="book-title">Simple Things You To Save BOOK</p>
-            <button>Show Details</button> <!-- Added: button element -->
-        </div>
-        <div class="book-card">
-            <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
-            <p class="book-title hidden">Placeholder</p>
-            <button>Show Details</button> <!-- Added: button element -->
-        </div>
-        <div class="book-card">
-            <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
-            <p class="book-title hidden">Placeholder</p>
-            <button>Show Details</button> <!-- Added: button element -->
-        </div>
-        <div class="book-card">
-            <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
-            <p class="book-title hidden">Placeholder</p>
-            <button>Show Details</button> <!-- Added: button element -->
-        </div>
-        <div class="book-card">
-            <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
-            <p class="book-title hidden">Placeholder</p>
-            <button>Show Details</button> <!-- Added: button element -->
-        </div>
-        <div class="book-card">
-            <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
-            <p class="book-title hidden">Placeholder</p>
-            <button>Show Details</button> <!-- Added: button element -->
+    </div>
+    <div class="recomen">
+        <h1>Book Recommendations</h1>
+        <div class="book-grid">
+            <div class="book-card">
+                <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+                <p class="book-title">Simple Things You To Save BOOK</p>
+                <button>Show Details</button> <!-- Added: button element -->
+            </div>
+            <div class="book-card">
+                <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+                <p class="book-title hidden">Placeholder</p>
+                <button>Show Details</button> <!-- Added: button element -->
+            </div>
+            <div class="book-card">
+                <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+                <p class="book-title hidden">Placeholder</p>
+                <button>Show Details</button> <!-- Added: button element -->
+            </div>
+            <div class="book-card">
+                <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+                <p class="book-title hidden">Placeholder</p>
+                <button>Show Details</button> <!-- Added: button element -->
+            </div>
+            <div class="book-card">
+                <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+                <p class="book-title hidden">Placeholder</p>
+                <button>Show Details</button> <!-- Added: button element -->
+            </div>
+            <div class="book-card">
+                <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+                <p class="book-title hidden">Placeholder</p>
+                <button>Show Details</button> <!-- Added: button element -->
+            </div>
         </div>
     </div>
-</div>
-</div>
-
+    </div>
     <div class="contact-page">
         <h2>Contact Us</h2>
         <div class="contact-columns">
@@ -203,36 +202,6 @@ feather.replace()
         allowfullscreen=""
         loading="lazy">
         </iframe>
-        <!-- Contact -->
-
-        <div id="contact">
-        <div class="container-contact">
-          <div class="row">
-            <div class="contact-left">
-              <h1 class="sub-title">Contact Me</h1>
-              <p><i class="bi bi-send"></i>ariesdjaenuri24@gmail.com</p>
-              <p><i class="bi bi-telephone"></i>085338557296</p>
-              <div class="social-icons">
-                <a href="https://facebook.com/"><i class="bi bi-facebook"></i></a>
-                <a href="https://twitter.com/"><i class="bi bi-twitter-x"></i></a>
-                <a href="https://instagram.com/"><i class="bi bi-instagram"></i></a>
-                <a href="https://linkedin.com/"><i class="bi bi-linkedin"></i></a>
-              </div>
-              <a href="src/CV Aris sementara.pdf" download class="btn cv">Download CV</a>
-            </div>
-            <div class="contact-right">
-              <form name="submit-to-google-sheet">
-                <input type="text" name="Name" placeholder="Your name" required>
-                <input type="email" name="Email" placeholder="Your email" required>
-                <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
-                <button type="submit" class="btn submit">Submit</button>
-              </form>
-              <span id="msg"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      
         <!-- Footer -->
         <footer>
             <div class="footer-container">
@@ -240,6 +209,10 @@ feather.replace()
             </div>
         </footer>
 
-        <script src="script.js"></script>
     </body>
     </html>
+
+
+        </div>
+</body>
+</html>
