@@ -109,15 +109,17 @@ body {
 
 .text p {
     color: #E4EAFF;
+    font-size: 1.2rem; /* Adjust size for "There is no friend as loyal as a book" */
 }
 
 .text p1 {
     color: #E4EAFF;
+    font-size: 1.2rem; /* Adjust size for "There is no friend as loyal as a book" */
 }
 
 .text h1 {
     color: #E4EAFF;
-    font-size: 1rem;
+    font-size: 2rem; /* Adjust size for "let's make the best investments" */
 }
 
 
