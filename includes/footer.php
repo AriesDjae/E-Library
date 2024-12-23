@@ -1,7 +1,7 @@
 <footer class="footer">
     <div class="footer-content">
         <div class="footer-section about-section">
-            <h3>About E-Library</h3>
+            <h3>About Librarylink</h3>
             <p>Your digital gateway to knowledge and learning. Explore our vast collection of books and resources.</p>
         </div>
         
@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="footer-bottom">
-        <p>&copy; <?php echo date('Y'); ?> E-Library. All rights reserved.</p>
+        <p>&copy; <?php echo date('Y'); ?> Librarylink. All rights reserved.</p>
     </div>
 </footer>
 
