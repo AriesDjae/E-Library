@@ -4,41 +4,168 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="contact.css">
-    <link rel="stylesheet" href="footer.css">
+
+     <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700&
+    display=swap" rel="stylesheet">
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+<!-- My Style -->
+<link rel="stylesheet" href="style.css?v=1.1">
+<link rel="stylesheet" href="contact.css?v=1.1">
+<link rel="stylesheet" href="footer.css?v=1.1">
 </head>
 <body>
 
-<div class="text">
-    <p>let's make the best investments</p>
-    <h1>There is no</h1>
-    <h1>friend as loyal</h1>
-    <h1>as a book</h1>
-    <p1>Read. Listen. Learn. Repeat</p1>
-</div>
+<!-- Feather Icons -->
+<script>
+feather.replace()
+</script>
 
 <div class="hero-image">
-        <img src="Group 4.svg" alt="Hero Image">
+<section class="hero" id="home">
+<main class="text">
+<p>let's make the best investments</p>
+<h1>There is no</h1>
+<h1>friend as loyal</h1>
+<h1>as a book</h1>
+<p1>Read. Listen. Learn. Repeat</p1>
+</main>
+</section>
+</div>
+    <div class="content">
+        <section id="collectin" class="collection">
+            <h2>Collections</h2>
+        </section>
+        <div class="card-container">
+    <div class="card">
+        <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="bintang">
+        <h3>The Hidden Mystery Behind</h3>
+        <p>Wilson</p>
+        <button>Show Details</button>
     </div>
-
-<div class="search-container">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-            </svg>
-            <input type="text" name="search" id="search" placeholder="Pencarian">
+    <div class="card">
+        <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+        <h3>The Hidden Mystery Behind</h3>
+        <p>Wilson</p>
+        <button>Show Details</button>
+    </div>
+    <div class="card">
+        <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+        <h3>The Hidden Mystery Behind</h3>
+        <p>Wilson</p>
+        <button>Show Details</button>
+    </div>
+    <div class="card">
+        <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+        <h3>The Hidden Mystery Behind</h3>
+        <p>Wilson</p>
+        <button>Show Details</button>
+    </div>
+    <div class="card">
+        <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="bintang">
+        <h3>The Hidden Mystery Behind</h3>
+        <p>Wilson</p>
+        <button>Show Details</button>
+    </div>
+    <div class="card">
+        <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+        <h3>The Hidden Mystery Behind</h3>
+        <p>Wilson</p>
+        <button>Show Details</button>
+    </div>
+    <div class="card">
+        <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+        <h3>The Hidden Mystery Behind</h3>
+        <p>Wilson</p>
+        <button>Show Details</button>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="category-book">
+    <div class="top-container">
+    <h2>Top Categories Book</h2>
+    <div class="categories">
+        <div class="category">
+            <div class="circle">
+                <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Grow Flower">
+                <div class="dashed-circle"></div> <!-- Elemen untuk garis putus-putus -->
+            </div>
+            <p class="category-name">Grow Flower (7)</p>
         </div>
-
-        <div class="content">
-
-            <section class="rekobuku">
-                <h2>Rekomendasi Buku</h2>
-            </section>
-            <section class="buku">
-                <h2>Koleksi Buku</h2>
-            </section>
+        <div class="category">
+            <div class="circle">
+                <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Adventure Book">
+                <div class="dashed-circle"></div> <!-- Elemen untuk garis putus-putus -->
+            </div>
+            <p class="category-name">Adventure Book (4)</p>
+        </div>
+        <div class="category">
+            <div class="circle">
+                <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Romance Books">
+                <div class="dashed-circle"></div> <!-- Elemen untuk garis putus-putus -->
+            </div>
+            <p class="category-name">Romance Books (80)</p>
+        </div>
+        <div class="category">
+            <div class="circle">
+                <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Design Low Book">
+                <div class="dashed-circle"></div> <!-- Elemen untuk garis putus-putus -->
+            </div>
+            <p class="category-name">Design Low Book (6)</p>
+        </div>
+        <div class="category">
+            <div class="circle">
+                <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Safe Home">
+                <div class="dashed-circle"></div> <!-- Elemen untuk garis putus-putus -->
+            </div>
+            <p class="category-name">Safe Home (5)</p>
         </div>
     </div>
+</div>
+</div>
+<div class="recomen">
+    <h1>Book Recommendations</h1>
+    <div class="book-grid">
+        <div class="book-card">
+            <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+            <p class="book-title">Simple Things You To Save BOOK</p>
+            <button>Show Details</button> <!-- Added: button element -->
+        </div>
+        <div class="book-card">
+            <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+            <p class="book-title hidden">Placeholder</p>
+            <button>Show Details</button> <!-- Added: button element -->
+        </div>
+        <div class="book-card">
+            <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+            <p class="book-title hidden">Placeholder</p>
+            <button>Show Details</button> <!-- Added: button element -->
+        </div>
+        <div class="book-card">
+            <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+            <p class="book-title hidden">Placeholder</p>
+            <button>Show Details</button> <!-- Added: button element -->
+        </div>
+        <div class="book-card">
+            <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+            <p class="book-title hidden">Placeholder</p>
+            <button>Show Details</button> <!-- Added: button element -->
+        </div>
+        <div class="book-card">
+            <img src="http://localhost/E-Library-main/Home/img/bintang.jpg" alt="Book Cover">
+            <p class="book-title hidden">Placeholder</p>
+            <button>Show Details</button> <!-- Added: button element -->
+        </div>
+    </div>
+</div>
+</div>
+
     <div class="contact-page">
         <h2>Contact Us</h2>
         <div class="contact-columns">

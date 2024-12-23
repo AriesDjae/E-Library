@@ -1,31 +1,39 @@
 * {
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
 }
 
 body {
-    font-family: Arial, sans-serif;
     line-height: 1.6;
-    background: linear-gradient(180deg, rgba(227, 233, 255, 0) 0%, #E3E9FF 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    background-color:var(--bg); 
+    color: black;
+    background: linear-gradient(180deg, rgba(227, 233, 255, 0) 0%, #E3E9FF 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);  
 }
 
 .container {
     min-height: 100vh;
     width: 100%;
     overflow-x: hidden;
+    padding: 1.5rem 7%;
 }
 
 /* Navbar Styles */
 .navbar {
     position: fixed;
     background-color: #0A3697;
-    padding: 1.5rem 3rem;
+    padding: 1.5rem 7%;
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     z-index: 1;
 }
@@ -46,30 +54,65 @@ body {
     height: 50%;
 }
 
-.text {
-    color: black;
-    max-width: 600px;
-    font-size: 1.8rem; /* Menambahkan ukuran font yang lebih besar */
-    margin: 2.5rem 0 2.5rem auto; /* Changed: removed 'auto' from left margin */
-    margin-right: 40px; /* Added: right margin */
-    margin-left: auto;
-    margin-top: 180px; /* Added: increased top margin */
-    line-height: 1.2; /* Mengatur jarak antar baris */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    background-image: url('home.jpg');
+    width: 100vw; /* Added: set width to 100% of the viewport width */
+    margin-left: calc(-50vw + 50%); /* Added: center the hero section */
+    background-size: cover;
+    background-position: center;
+    margin-top: 81px; /* Added: menurunkan posisi hero */
+    position: relative;
 }
 
-.hero-image {
+.hero::after {
+    
+    display: block;
     position: absolute;
-    left: 100px;      
-    top: 20px;
-    width: 630px;     /* Mengubah ukuran dari 600px */
-    height: 630px;    /* Mengubah ukuran dari 600px */
-    z-index: -1;
-}
-
-.hero-image img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    background: linear-gradient(0deg, rgba(1, 71, 159) 3%, rgba(255, 255, 255) 25%);
+}
+
+.hero .text {
+    position: absolute; /* Set position to absolute */
+    margin-top:60px; /* Adjust as needed */
+    right: 250px; /* Adjust as needed */
+    color: white;
+    font-size: 1rem;
+    transform: translateX(-50%); /* Centering adjustment */
+    opacity: 0; /* Start hidden */
+    animation: fadeIn 2s forwards; /* Apply fade-in animation */
+
+    }
+
+    
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Start fully transparent */
+        transform: translateY(20px); /* Start slightly lower */
+    }
+    to {
+        opacity: 1; /* End fully visible */
+        transform: translateY(0); /* End at original position */
+    }
+}
+
+
+.text p {
+    color: #E4EAFF;
+}
+
+.text p1 {
+    color: #E4EAFF;
+}
+
+.text h1 {
+    color: #E4EAFF;
+    font-size: 1rem;
 }
 
 /* Search Container */
@@ -212,19 +255,217 @@ body {
 .content {
     padding: 2rem;
     margin-top: 100px; /* Added: adjust content position */
-}
-
-.content section {
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(20px); /* Mulai sedikit lebih rendah */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Transisi untuk animasi */
 }
 
 .content h2 {
     color: #0A3697;
-    margin-bottom: 1rem;
+    margin-bottom: 5rem;
+    font-size: 40px;
+}
+
+.card-container {
+    display: flex;
+    gap: 25px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scroll-behavior: smooth;
+    animation: scrollAnimation 15s linear infinite;
+    scrollbar-color: transparent transparent;
+}
+
+.card-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.card-container::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.card {
+    background-color: #E9E9E9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    width: 353px;
+    height: 353px;
+    flex:0 0 auto;
+}
+
+.card img:hover {
+    transform: scale(1.1);
+}
+
+.card img {
+    width: 130px;
+    height: 190px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.card h3 {
+    font-size: 18px;
+    color: #333;
+    margin: 15px 0 5px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #777;
+    margin: 0;
+}
+
+.card button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #4a90e2;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.card button:hover {
+    background-color: #ffa631;
+    transform: scale(1.1);
+}
+
+.top-container {
+    padding: 2rem;
+    margin: auto;
+    text-align: center;
+    justify-content: center;
+}
+
+.top-container h2 {
+    color: #0A3697;
+    margin-bottom: 5rem;
+    font-size: 40px;
+    margin-top: 3px;
+}
+
+.categories {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+    justify-content: center;
+    width: 100%;
+}
+
+
+.circle {
+    display: flex;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 25px;
+    width: 180px;
+    height: 180px;
+    flex:0 0 auto;
+    position: relative;
+    
+}
+
+.dashed-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 170px; /* Lebar sama dengan lingkaran */
+    height: 170px; /* Tinggi sama dengan lingkaran */
+    border-radius: 50%; /* Membuatnya berbentuk lingkaran */
+    border: 2px dashed #0A3697; /* Garis putus-putus */
+    animation: rotate 8s linear infinite; /* Animasi berputar */
+    transform: translate(-50%, -50%); /* Pusatkan lingkaran */
+}
+
+@keyframes rotate {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.circle img {
+    max-width: 80%; /* Changed: ensure the image fits within the circle */
+    max-height: 80%; /* Changed: ensure the image fits within the circle */
+     
+}
+
+.category-name {
+    font-size: 13px;
+    color: #0A3697;
+    margin: 15px 0 5px;
+}
+
+.category-book {
+    display: flex; /* Menggunakan Flexbox */
+    flex-direction: column; /* Mengatur arah menjadi kolom */
+    align-items: center; /* Mengatur konten agar berada di tengah secara horizontal */
+    text-align: center; /* Mengatur teks agar berada di tengah */
+    justify-content: center;
+    background-color: #E4EAFF; /* Warna biru */
+    color: white; /* Warna teks putih untuk kontras */
+    width: 100%; /* Set lebar menjadi 100% */
+    height: 50%;
+    padding: 1rem; /* Tambahkan padding sesuai kebutuhan */
+    box-sizing: border-box; /* Pastikan padding dihitung dalam lebar dan tinggi */
+    margin: 0 auto; /* Pusatkan elemen di tengah halaman */
+    
+}
+
+.recomen {
+    padding: 1.5rem 7%;
+}
+
+.recomen h1 {
+    color: #0A3697;
+    margin-bottom: 5rem;
+    font-size: 40px;
+    margin-top: 3px;
+    text-align: center;
+}
+
+.book-card {
+    display: flex;
+    align-items: center;
+    background-color: #E9E9E9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 500px;
+    height: 250px;
+}
+
+.book-grid {
+    display: flex;
+    gap: 25px;
+    padding-bottom: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 5rem;
+}
+
+.book-card img {
+    max-width: 100%; /* Changed: ensure the image fits within the circle */
+    max-height: 100%; /* Changed: ensure the image fits within the circle */
+    margin-right: 10px; /* Added: space between image and title */
+}
+
+.book-card p {
+    display: flex; /* Added: use flexbox to align items */
+    align-items: center; /* Added: center align vertically */
+    margin-left: 10px; /* Added: space between image and title */
 }
 
 /* Responsive Design - Diperbarui */
