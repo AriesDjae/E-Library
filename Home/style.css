@@ -120,15 +120,27 @@ body {
 
 .text p {
     color: #E4EAFF;
+<<<<<<< HEAD
+=======
+    font-size: 1.2rem; /* Adjust size for "There is no friend as loyal as a book" */
+>>>>>>> parent of 861ecbe (.)
 }
 
 .text p1 {
     color: #E4EAFF;
+<<<<<<< HEAD
+=======
+    font-size: 1.2rem; /* Adjust size for "There is no friend as loyal as a book" */
+>>>>>>> parent of 861ecbe (.)
 }
 
 .text h1 {
     color: #E4EAFF;
+<<<<<<< HEAD
     font-size: 1rem;
+=======
+    font-size: 2rem; /* Adjust size for "let's make the best investments" */
+>>>>>>> parent of 861ecbe (.)
 }
 
 >>>>>>> parent of f4d3fb8 (.)
