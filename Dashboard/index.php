@@ -9,7 +9,7 @@ require 'db.php';
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - SB Admin</title>
+        <title>Dashboard Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -152,8 +152,8 @@ require 'db.php';
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Chart Booking Ruangan 
+                                    <i class="fas fa-chart-bar me-1"></i>
+                                    Login User
                                     </div>
                                     <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
                                 </div>
@@ -170,20 +170,21 @@ require 'db.php';
                         </div>
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                Borrowing Book
+                                <!-- Button to Open the Modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Tambah Buku</button>
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Book</th>
-                                            <th>Categories</th>
-                                            <th>Officer</th>
-                                            <th>Address</th>
-                                            <th>Booking</th>
-                                            <th>Return</th>
+                                            <th>ID</th>
+                                            <th>Judul</th>
+                                            <th>Penulis</th>
+                                            <th>Penerbit</th>
+                                            <th>Tahun</th>
+                                            <th>Stok</th>
+                                            <th>Deskripsi</th>
+                                            <th>Cover</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -227,4 +228,40 @@ require 'db.php';
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
     </body>
+    <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Tambah Buku</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <form method="post">
+        <div class="modal-body">
+          <input type="number" name="id-buku" placeholder="ID_Buku" class="form-control">
+          <input type="number" name="id-kategori" placeholder="ID_Kategori" class="form-control">
+          <input type="text" name="Penulis" placeholder="Penulis" class="form-control">
+          <input type="text" name="Judul" placeholder="Judul" class="form-control">
+          <input type="text" name="Penerbit" placeholder="Penerbit" class="form-control">
+          <input type="number" name="Tahun_Terbit" placeholder="Tahun_Terbit" class="form-control">
+          <input type="text" name="Lokasi_Rak" placeholder="Lokasi_Rak" class="form-control">
+          <input type="number" name="Stok" placeholder="Stok" class="form-control">
+          <input type="text" name="Deskripsi" placeholder="Deskripsi" class="form-control">
+          <input type="image" name="Cover_Image" placeholder="Cover_Image" class="form-control">
+          <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+        </div>
+        </form>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 </html>
