@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="contact.css">
     <link rel="stylesheet" href="footer.css">
+<<<<<<< HEAD
     <style>
         body {
             margin-bottom: 0; /* Remove bottom margin */
@@ -39,10 +40,13 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
     </style>
+=======
+>>>>>>> parent of c3abf00 (.)
 </head>
 <body>
 
 <div class="text">
+<<<<<<< HEAD
     <div class="text-content">
         <p>let's make the best investments</p>
         <h1>There is no</h1>
@@ -51,6 +55,18 @@
         <p>Read. Listen. Learn. Repeat</p>
     </div>     
 </div>
+=======
+    <p>let's make the best investments</p>
+    <h1>There is no</h1>
+    <h1>friend as loyal</h1>
+    <h1>as a book</h1>
+    <p1>Read. Listen. Learn. Repeat</p1>
+</div>
+
+<div class="hero-image">
+        <img src="Group 4.svg" alt="Hero Image">
+    </div>
+>>>>>>> parent of c3abf00 (.)
 
 <div class="search-container">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
