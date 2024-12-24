@@ -176,43 +176,59 @@ require 'db.php';
                                     </button>
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Judul</th>
-                                            <th>Penulis</th>
-                                            <th>Penerbit</th>
-                                            <th>Tahun</th>
-                                            <th>Stok</th>
-                                            <th>Deskripsi</th>
-                                            <th>Cover</th>
-                                        </tr>
-                                    </thead>
-                                    <?php
-                                    $ambilstok = mysqli_query($conn, "select * from stok");
-                                    while($data=mysqli_fetch_array($ambilstok)){
+    <table class="table table-bordered" id="datatable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Judul</th>
+                <th>Penulis</th>
+                <th>Penerbit</th>
+                <th>Tahun</th>
+                <th>Stok</th>
+                <th>Deskripsi</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+        // Validasi koneksi database
+        if (!$conn) {
+            die("Koneksi ke database gagal: " . mysqli_connect_error());
+        }
 
-                                    }
-                                    ?>
-                                    <tbody>
-                                    <tr>
-                                            <th>ID</th>
-                                            <th>Judul</th>
-                                            <th>Penulis</th>
-                                            <th>Penerbit</th>
-                                            <th>Tahun</th>
-                                            <th>Stok</th>
-                                            <th>Deskripsi</th>
-                                            <th>Cover</th>
-                                        </tr>
-                                    <?php
+        // Query untuk mengambil data dari tabel "buku"
+        $ambilstok = mysqli_query($conn, "SELECT * FROM buku");
 
-                                    ?>
-                                    
-                                    </tbody>
-                                </table>
-                            </div>
+        // Cek apakah query berhasil
+        if ($ambilstok) {
+            while ($data = mysqli_fetch_array($ambilstok)) {
+                // Ambil data dari setiap kolom
+                $ID_Buku = htmlspecialchars($data['ID_Buku']);
+                $Judul = htmlspecialchars($data['Judul']);
+                $Penulis = htmlspecialchars($data['Penulis']);
+                $Penerbit = htmlspecialchars($data['Penerbit']);
+                $Tahun_Terbit = htmlspecialchars($data['Tahun_Terbit']);
+                $Stok = htmlspecialchars($data['Stok']);
+                $Deskripsi = htmlspecialchars($data['Deskripsi']);
+
+                echo "
+                <tr>
+                    <td>$ID_Buku</td>
+                    <td>$Judul</td>
+                    <td>$Penulis</td>
+                    <td>$Penerbit</td>
+                    <td>$Tahun_Terbit</td>
+                    <td>$Stok</td>
+                    <td>$Deskripsi</td>
+                </tr>";
+            }
+        } else {
+            // Jika query gagal, tampilkan pesan kesalahan
+            echo "<tr><td colspan='8'>Tidak dapat mengambil data buku: " . mysqli_error($conn) . "</td></tr>";
+        }
+        ?>
+        </tbody>
+    </table>
+</div>
                         </div>
                     </div>
                 </main>

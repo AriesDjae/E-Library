@@ -1,7 +1,7 @@
 <?php
-$servername = "db"; 
+$servername = "localhost"; 
 $username = "root";        
-$password = "rootpassword";            
+$password = "";            
 $dbname = "e-library";     
 // Membuat koneksi
 $conn = new mysqli($servername, $username, $password, $dbname);
