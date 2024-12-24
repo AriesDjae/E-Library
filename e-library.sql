@@ -125,6 +125,18 @@ CREATE TABLE IF NOT EXISTS `user_sessions` (
     FOREIGN KEY (`user_id`) REFERENCES `petugas` (`ID_Petugas`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE contact_messages (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    subject VARCHAR(100) NOT NULL,
+    message TEXT NOT NULL,
+    created_at DATETIME NOT NULL,
+    INDEX idx_created_at (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;    
+
+
 -- Tambahkan ruangan secara otomatis
 INSERT IGNORE INTO `reading_room` (`Nama_Ruang`, `Kapasitas`, `Status`)
 VALUES

@@ -13,12 +13,12 @@ footer {
     color: white; /* Warna teks */
     text-align: center; /* Teks rata tengah */
     padding: 20px 0; /* Padding atas dan bawah */
-    position: fixed;  /* Change to fixed */
+    position: relative;  /* Change to relative */
     bottom: 0;
     left: 0;  /* Add left positioning */
     right: 0;  /* Add right positioning */
     width: 100%;
-    margin-top: 0;  /* Remove margin-top */
+    margin-top: 100%;  /* Change margin-top */
 }
 
 footer a {
@@ -34,7 +34,7 @@ footer a:hover {
     width: 100%;  /* Change from max-width to width */
     margin: 0;
     padding: 0;  /* Remove padding */
-    max-width: 1200px;
+    max-width: 0 auto;  /* Change max-width */
     margin: 0 auto;
     padding: 0 15px;
 }

@@ -1,38 +1,43 @@
 * {
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
 }
 
 body {
-    font-family: Arial, sans-serif;
     line-height: 1.6;
-    background: linear-gradient(180deg, rgba(227, 233, 255, 0) 0%, #E3E9FF 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
-<<<<<<< HEAD
-    margin-bottom: 60px; /* Adjust this value based on your footer height */
-=======
->>>>>>> parent of c3abf00 (.)
+    background-color:var(--bg); 
+    color: black;
+    background: linear-gradient(180deg, rgba(227, 233, 255, 0) 0%, #E3E9FF 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);  
 }
 
 .container {
     min-height: 100vh;
     width: 100%;
     overflow-x: hidden;
+    padding: 1.5rem 7%;
 }
 
 /* Navbar Styles */
 .navbar {
     position: fixed;
     background-color: #0A3697;
-    padding: 1.5rem 3rem;
+    padding: 1.5rem 7%;
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     z-index: 1;
 }
+
 
 .logo {
     margin-right: 2rem;
@@ -50,17 +55,8 @@ body {
     height: 50%;
 }
 
-<<<<<<< HEAD
-.text {
-    color: black;
-    max-width: 600px;
-    font-size: 1.8rem; /* Menambahkan ukuran font yang lebih besar */
-    margin: 2.5rem 0 2.5rem auto; /* Changed: removed 'auto' from left margin */
-    margin-right: 40px; /* Added: right margin */
-    margin-left: auto;
-    margin-top: 180px; /* Added: increased top margin */
-    line-height: 1.2; /* Mengatur jarak antar baris */
-=======
+
+
 .hero {
     min-height: 100vh;
     display: flex;
@@ -73,32 +69,23 @@ body {
     background-position: center;
     margin-top: 81px; /* Added: menurunkan posisi hero */
     position: relative;
->>>>>>> parent of f4d3fb8 (.)
 }
 
-.hero-image {
+.hero::after {
+    
+    display: block;
     position: absolute;
-    left: 100px;      
-    top: 20px;
-    width: 630px;     /* Mengubah ukuran dari 600px */
-    height: 630px;    /* Mengubah ukuran dari 600px */
-    z-index: -1;
-}
-
-.hero-image img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    background: linear-gradient(0deg, rgba(1, 71, 159) 3%, rgba(255, 255, 255) 25%);
 }
 
-<<<<<<< HEAD
-=======
 .hero .text {
     position: absolute; /* Set position to absolute */
     margin-top:60px; /* Adjust as needed */
     right: 250px; /* Adjust as needed */
     color: white;
-    font-size: 1rem;
+    font-size: 3rem;
     transform: translateX(-50%); /* Centering adjustment */
     opacity: 0; /* Start hidden */
     animation: fadeIn 2s forwards; /* Apply fade-in animation */
@@ -120,30 +107,20 @@ body {
 
 .text p {
     color: #E4EAFF;
-<<<<<<< HEAD
-=======
-    font-size: 1.2rem; /* Adjust size for "There is no friend as loyal as a book" */
->>>>>>> parent of 861ecbe (.)
 }
 
 .text p1 {
     color: #E4EAFF;
-<<<<<<< HEAD
-=======
-    font-size: 1.2rem; /* Adjust size for "There is no friend as loyal as a book" */
->>>>>>> parent of 861ecbe (.)
 }
 
 .text h1 {
     color: #E4EAFF;
-<<<<<<< HEAD
-    font-size: 1rem;
-=======
-    font-size: 2rem; /* Adjust size for "let's make the best investments" */
->>>>>>> parent of 861ecbe (.)
+    font-size: 3rem;
 }
 
->>>>>>> parent of f4d3fb8 (.)
+
+
+
 /* Search Container */
 .search-container {
     display: flex;
@@ -284,30 +261,17 @@ body {
 .content {
     padding: 2rem;
     margin-top: 100px; /* Added: adjust content position */
-<<<<<<< HEAD
-}
-
-.content section {
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-=======
     transform: translateY(20px); /* Mulai sedikit lebih rendah */
     transition: opacity 0.5s ease, transform 0.5s ease; /* Transisi untuk animasi */
->>>>>>> parent of f4d3fb8 (.)
+
+    
 }
 
 .content h2 {
     color: #0A3697;
-<<<<<<< HEAD
-    margin-bottom: 1rem;
-=======
     margin-bottom: 5rem;
     font-size: 40px;
 }
-
 .card-container {
     display: flex;
     gap: 25px;
@@ -509,7 +473,6 @@ body {
     display: flex; /* Added: use flexbox to align items */
     align-items: center; /* Added: center align vertically */
     margin-left: 10px; /* Added: space between image and title */
->>>>>>> parent of f4d3fb8 (.)
 }
 
 /* Responsive Design - Diperbarui */

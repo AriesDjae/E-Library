@@ -11,7 +11,7 @@
     <div class="container">
         <div class="navbar">
             <div class="logo">
-                <h1>E-Library</h1>
+                <h1>Librarylink</h1>
             </div>
 
             <!-- Navbar -->
