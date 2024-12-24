@@ -34,21 +34,21 @@ updateRoomStatus($conn);
 // Handle AJAX request for booking
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'book') {
     $roomId = filter_input(INPUT_POST, 'roomId', FILTER_VALIDATE_INT);
-    $userId = filter_input(INPUT_POST, 'userId', FILTER_VALIDATE_INT);
+    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
     $date = filter_input(INPUT_POST, 'date', FILTER_SANITIZE_STRING);
     $startTime = filter_input(INPUT_POST, 'startTime', FILTER_SANITIZE_STRING);
     $endTime = filter_input(INPUT_POST, 'endTime', FILTER_SANITIZE_STRING);
 
     // Check if inputs are valid
-    if (!$roomId || !$userId || !$date || !$startTime || !$endTime) {
-        $response['message'] = "Input tidak valid. Harap periksa nilai input Anda.";
+    if (!$roomId || !$username || !$date || !$startTime || !$endTime) {
+        $response['message'] = "Invalid input. Please check your input values.";
     } else {
         // Ensure the date is not in the past
         if (strtotime($date) < strtotime(date('Y-m-d'))) {
-            $response['message'] = "Tidak dapat memesan untuk tanggal yang telah lewat.";
+            $response['message'] = "Cannot book for a past date.";
         } elseif (!validateBookingDuration($startTime, $endTime)) {
             // Validate booking duration
-            $response['message'] = "Durasi pemesanan harus antara 30 menit hingga 4 jam.";
+            $response['message'] = "Booking duration must be between 30 minutes and 4 hours.";
         } else {
             // Check if the room is available at the selected time
             $checkQuery = $conn->prepare("SELECT * FROM reading_room_booking
@@ -61,12 +61,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             $result = $checkQuery->get_result();
 
             if ($result->num_rows > 0) {
-                $response['message'] = "Maaf, ruangan telah dipesan pada waktu yang dipilih.";
+                $response['message'] = "Sorry, the room is already booked for the selected time.";
             } else {
                 // Insert the booking into the database
-                $insertQuery = $conn->prepare("INSERT INTO reading_room_booking (ID_Room, ID_Anggota, Tanggal_Booking, Waktu_Mulai, Waktu_Selesai)
+                $insertQuery = $conn->prepare("INSERT INTO reading_room_booking (ID_Room, Username, Tanggal_Booking, Waktu_Mulai, Waktu_Selesai)
                                                VALUES (?, ?, ?, ?, ?)");
-                $insertQuery->bind_param("iisss", $roomId, $userId, $date, $startTime, $endTime);
+                $insertQuery->bind_param("issss", $roomId, $username, $date, $startTime, $endTime);
 
                 if ($insertQuery->execute()) {
                     // Update room status to 'Booked'
@@ -75,9 +75,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                     $updateRoomStatus->execute();
 
                     $response['status'] = 'success';
-                    $response['message'] = "Ruangan berhasil dipesan!";
+                    $response['message'] = "Room successfully booked!";
                 } else {
-                    $response['message'] = "Terjadi kesalahan saat memproses pemesanan. Silakan coba lagi.";
+                    $response['message'] = "An error occurred while processing the booking. Please try again.";
                 }
             }
         }
@@ -98,7 +98,7 @@ $roomsResult = $conn->query($roomQuery);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reservasi Ruang Baca</title>
+    <title>Reading Room Reservation</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         body {
@@ -157,6 +157,10 @@ $roomsResult = $conn->query($roomQuery);
             text-align: center;
         }
 
+        .container {
+            width: auto !important;
+        }
+        
         .success {
             background-color: #d4edda;
             border: 1px solid #c3e6cb;
@@ -172,30 +176,30 @@ $roomsResult = $conn->query($roomQuery);
 <body>
 
     <div class="form-container">
-        <h2>Reservasi Ruang Baca</h2>
+        <h2>Reading Room Reservation</h2>
 
         <form id="roomBookingForm">
-            <label for="roomId">Pilih Ruangan:</label>
+            <label for="roomId">Select Room:</label>
             <select id="roomId" name="roomId" required>
-                <option value="">Pilih Ruangan</option>
+                <option value="">Select Room</option>
                 <?php while ($room = $roomsResult->fetch_assoc()): ?>
                     <option value="<?= htmlspecialchars($room['ID_Room']); ?>"><?= htmlspecialchars($room['Nama_Ruang']); ?></option>
                 <?php endwhile; ?>
             </select>
 
-            <label for="userId">ID Anggota:</label>
-            <input type="number" id="userId" name="userId" required>
+            <label for="username">Member Username:</label>
+            <input type="text" id="username" name="username" required>
 
-            <label for="date">Tanggal Booking:</label>
+            <label for="date">Booking Date:</label>
             <input type="date" id="date" name="date" required>
 
-            <label for="startTime">Waktu Mulai:</label>
+            <label for="startTime">Start Time:</label>
             <input type="time" id="startTime" name="startTime" required>
 
-            <label for="endTime">Waktu Selesai:</label>
+            <label for="endTime">End Time:</label>
             <input type="time" id="endTime" name="endTime" required>
 
-            <button type="submit">Pesan Ruangan</button>
+            <button type="submit">Book Room</button>
         </form>
 
         <div id="notification" class="notification"></div>

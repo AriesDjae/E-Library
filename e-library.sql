@@ -198,3 +198,58 @@ SELECT 2, 'YeaRimDang', 'Why? Sci-Tech: Internet of Things dan Geometri', 'Elex 
 'Di sebuah dunia ajaib, di mana semua benda terhubung...',
 'why.jpg'
 WHERE NOT EXISTS (SELECT 1 FROM buku WHERE Judul = 'Why? Sci-Tech: Internet of Things dan Geometri');
+
+-- Pastikan kolom Username di tabel anggota unik
+ALTER TABLE `anggota` 
+ADD UNIQUE (`Username`);
+
+-- Langkah 1: Drop Foreign Key pada tabel peminjaman
+ALTER TABLE `peminjaman`
+DROP FOREIGN KEY `FK_Anggota_Peminjaman`;
+
+-- Langkah 2: Tambahkan kolom Username pada tabel peminjaman
+ALTER TABLE `peminjaman`
+ADD COLUMN `Username` VARCHAR(100) NOT NULL AFTER `ID_Peminjaman`;
+
+-- Langkah 3: Update data pada kolom Username berdasarkan ID_Anggota
+UPDATE `peminjaman` p
+JOIN `anggota` a ON p.ID_Anggota = a.ID_Anggota
+SET p.Username = a.Username;
+
+-- Langkah 4: Hapus kolom ID_Anggota dari tabel peminjaman
+ALTER TABLE `peminjaman`
+DROP COLUMN `ID_Anggota`;
+
+-- Langkah 5: Tambahkan Foreign Key baru untuk Username pada tabel peminjaman
+ALTER TABLE `peminjaman`
+ADD FOREIGN KEY (`Username`) REFERENCES `anggota` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Langkah 6: Drop Foreign Key pada tabel reading_room_booking
+ALTER TABLE `reading_room_booking`
+DROP FOREIGN KEY `FK_User_Booking`;
+
+-- Langkah 7: Tambahkan kolom Username pada tabel reading_room_booking
+ALTER TABLE `reading_room_booking`
+ADD COLUMN `Username` VARCHAR(100) NOT NULL AFTER `ID_Room`;
+
+-- Langkah 8: Update data pada kolom Username berdasarkan ID_Anggota
+UPDATE `reading_room_booking` rb
+JOIN `anggota` a ON rb.ID_Anggota = a.ID_Anggota
+SET rb.Username = a.Username;
+
+-- Langkah 9: Hapus kolom ID_Anggota dari tabel reading_room_booking
+ALTER TABLE `reading_room_booking`
+DROP COLUMN `ID_Anggota`;
+
+-- Langkah 10: Tambahkan Foreign Key baru untuk Username pada tabel reading_room_booking
+ALTER TABLE `reading_room_booking`
+ADD FOREIGN KEY (`Username`) REFERENCES `anggota` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Langkah 11: Tambahkan indeks untuk kolom Username pada tabel anggota untuk optimasi pencarian
+CREATE INDEX idx_username ON anggota (Username);
+
+-- Validasi: Periksa struktur tabel dan data
+DESCRIBE `peminjaman`;
+DESCRIBE `reading_room_booking`;
+SELECT * FROM `peminjaman` LIMIT 5;
+SELECT * FROM `reading_room_booking` LIMIT 5;

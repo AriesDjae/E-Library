@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $response = [];
     
     $bookId = htmlspecialchars($_POST['bookId']);
-    $userId = htmlspecialchars($_POST['userId']);
+    $username = htmlspecialchars($_POST['username']);
     $borrowDate = htmlspecialchars($_POST['borrowDate']);
     $returnDate = htmlspecialchars($_POST['returnDate']);
 
@@ -32,10 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $bookDetails = $resultBook->fetch_assoc();
         if ($bookDetails['Stok'] > 0) {
             // Insert borrowing data
-            $insertSql = "INSERT INTO peminjaman (ID_Anggota, ID_Buku, Tanggal_Peminjaman, Tanggal_Harus_Pengembalian, Status_Peminjaman) 
+            $insertSql = "INSERT INTO peminjaman (ID_Buku, Username, Tanggal_Peminjaman, Tanggal_Harus_Pengembalian, Status_Peminjaman) 
                           VALUES (?, ?, ?, ?, 'Dipinjam')";
             $stmtInsert = $conn->prepare($insertSql);
-            $stmtInsert->bind_param("iiss", $userId, $bookId, $borrowDate, $returnDate);
+            $stmtInsert->bind_param("isss", $bookId, $username, $borrowDate, $returnDate);
 
             if ($stmtInsert->execute()) {
                 // Decrease book stock
@@ -99,8 +99,8 @@ if ($resultBooks) {
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 30px;
-            width: 100%;
             max-width: 400px;
+            min-height: 700px;
             box-sizing: border-box;
         }
 
@@ -111,6 +111,11 @@ if ($resultBooks) {
 
         .form-group {
             margin-bottom: 15px;
+        }
+
+        .container {
+            min-height: auto !important;
+            width: auto !important;
         }
 
         label {
@@ -195,8 +200,8 @@ if ($resultBooks) {
                 </select>
             </div>
             <div class="form-group">
-                <label for="userId">User ID:</label>
-                <input type="text" id="userId" name="userId" required>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
             </div>
             <div class="form-group">
                 <label for="borrowDate">Borrow Date:</label>
