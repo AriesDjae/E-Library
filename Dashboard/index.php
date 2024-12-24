@@ -189,19 +189,27 @@ require 'db.php';
                                             <th>Cover</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Book</th>
-                                            <th>Categories</th>
-                                            <th>Officer</th>
-                                            <th>Address</th>
-                                            <th>Booking</th>
-                                            <th>Return</th>
-                                        </tr>
-                                    </tfoot>
+                                    <?php
+                                    $ambilstok = mysqli_query($conn, "select * from stok");
+                                    while($data=mysqli_fetch_array($ambilstok)){
+
+                                    }
+                                    ?>
                                     <tbody>
-                                        
+                                    <tr>
+                                            <th>ID</th>
+                                            <th>Judul</th>
+                                            <th>Penulis</th>
+                                            <th>Penerbit</th>
+                                            <th>Tahun</th>
+                                            <th>Stok</th>
+                                            <th>Deskripsi</th>
+                                            <th>Cover</th>
+                                        </tr>
+                                    <?php
+
+                                    ?>
+                                    
                                     </tbody>
                                 </table>
                             </div>

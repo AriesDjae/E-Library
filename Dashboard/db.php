@@ -1,6 +1,6 @@
 <?php
 session_start();
-$servername = "localhost";
+$servername = "db";
 $username = "root";
 $password = "rootpassword";
 $dbname = "e-library";
