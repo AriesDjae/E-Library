@@ -171,7 +171,9 @@ require 'db.php';
                         <div class="card mb-4">
                             <div class="card-header">
                                 <!-- Button to Open the Modal -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Tambah Buku</button>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                                    Tambah buku
+                                    </button>
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -240,19 +242,29 @@ require 'db.php';
         </div>
         
         <!-- Modal body -->
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
         <div class="modal-body">
-          <input type="number" name="id-buku" placeholder="ID_Buku" class="form-control">
-          <input type="number" name="id-kategori" placeholder="ID_Kategori" class="form-control">
+          <input type="number" name="ID_Buku" placeholder="ID_Buku" class="form-control">
+          <br>
+          <input type="number" name="ID_Kategori" placeholder="ID_Kategori" class="form-control">
+          <br>
           <input type="text" name="Penulis" placeholder="Penulis" class="form-control">
+          <br>
           <input type="text" name="Judul" placeholder="Judul" class="form-control">
+          <br>
           <input type="text" name="Penerbit" placeholder="Penerbit" class="form-control">
+          <br>
           <input type="number" name="Tahun_Terbit" placeholder="Tahun_Terbit" class="form-control">
+          <br>
           <input type="text" name="Lokasi_Rak" placeholder="Lokasi_Rak" class="form-control">
+          <br>
           <input type="number" name="Stok" placeholder="Stok" class="form-control">
+          <br>
           <input type="text" name="Deskripsi" placeholder="Deskripsi" class="form-control">
-          <input type="image" name="Cover_Image" placeholder="Cover_Image" class="form-control">
-          <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+          <br>
+          <input type="file" id="img" name="Cover_Image" placeholder="Cover_Image" accept=".svg, image/svg+xml" class="form-control">
+          <br>
+          <button type="submit" class="btn btn-primary" name="addbuku">Submit</button>
         </div>
         </form>
         
