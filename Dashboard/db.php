@@ -2,7 +2,7 @@
 session_start();
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "rootpassword";
 $dbname = "e-library";
 
 // Membuat koneksi
