@@ -72,33 +72,33 @@ switch ($page) {
         include 'catalog.php';
         break;
     case 'new-books':
-        include 'resources/new-arrivals.php';
+        include 'NavContent/resources/new-arrivals.php';
         break;
     case 'popular-books':
-        include 'resources/popular-books.php';
+        include 'NavContent/resources/popular-books.php';
         break;
     case 'recommendations':
-        include 'resources/recommended.php';
+        include 'NavContent/resources/recommended.php';
         break;
     case 'journals':
-        include 'resources/journals.php';
+        include 'NavContent/resources/journals.php';
         break;
     case 'scientific-papers':
-        include 'resources/research-papers.php';
+        include 'NavContent/resources/research-papers.php';
         break;
     case 'thesis':
-        include 'resources/theses.php';
+        include 'NavContent/resources/theses.php';
         break;
 
     // Services
     case 'borrowing':
-        include 'services/borrowing.php';
+        include 'borrowing.php';
         break;
     case 'returning':
         include 'services/returning.php';
         break;
     case 'reading-room':
-        include 'services/reading-room.php';
+        include 'reading-rooms.php';
         break;
 
     // Account

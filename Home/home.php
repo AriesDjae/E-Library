@@ -1,3 +1,7 @@
+<?php
+require 'db.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +60,7 @@
                 <img src="/E-Library/Home/img/bulan.jpg" alt="Book Cover">
                 <h3>Bulan</h3>
                 <p>Tereliye</p>
-                <button>Show Details</button>
+                <button><a href="NavContent/resources/detail_buku.php?id=1" class="button">Show Details</a></button>
             </div>
             <div class="card">
                 <img src="/E-Library/Home/img/halfblood.jpg" alt="Book Cover">

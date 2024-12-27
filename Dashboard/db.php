@@ -1,8 +1,8 @@
 <?php
 session_start();
-$servername = "localhost";
-$username = "root";
-$password = "";
+$servername = "db"; 
+$username = "root";        
+$password = "rootpassword";            
 $dbname = "e-library";
 
 // Membuat koneksi
