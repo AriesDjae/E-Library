@@ -12,9 +12,9 @@ function closemenu(){
 
 // Message
 
-const scriptURL = 'https://script.google.com/macros/s/AKfycbyz-0Qfi0-N3R6ZiJa70kPh3sZzJ2w8fspQiRJxpJsmF4xChrnkSrzuYDkAbAjRB-zN/exec'
-  const form = document.forms['submit-to-google-sheet']
-  const msg = document.getElementById("msg");
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyz-0Qfi0-N3R6ZiJa70kPh3sZzJ2w8fspQiRJxpJsmF4xChrnkSrzuYDkAbAjRB-zN/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg");
 
   form.addEventListener('submit', e => {
     e.preventDefault()
