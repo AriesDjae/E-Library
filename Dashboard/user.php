@@ -1,78 +1,162 @@
-<div class="card-body">
-    <table class="table table-bordered" id="datatable" width="100%" cellspacing="0">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Judul</th>
-                <th>Penulis</th>
-                <th>Penerbit</th>
-                <th>Tahun</th>
-                <th>Stok</th>
-                <th>Deskripsi</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php
-        // Debug mode
-        error_reporting(E_ALL);
-        ini_set('display_errors', 1);
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Data User</h1>
 
-        if (!isset($conn)) {
-            require_once 'db.php';
-        }
+    <!-- Statistik -->
+    <?php
+    $totalUsers = $conn->query("SELECT COUNT(*) AS total FROM anggota")->fetch_assoc()['total'];
+    $uniqueEmails = $conn->query("SELECT COUNT(DISTINCT Email) AS unique_emails FROM anggota")->fetch_assoc()['unique_emails'];
+    ?>
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body">
+                    <i class="fas fa-users"></i> Total Users: <?= $totalUsers ?>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        if ($conn->connect_error) {
-            die("<tr><td colspan='8' class='text-center text-danger'>Koneksi ke database gagal: " . $conn->connect_error . "</td></tr>");
-        }
+    <!-- Grafik Aktivitas User -->
+    <div class="col-xl-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-chart-bar me-1"></i>
+                Aktivitas User
+            </div>
+            <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+        </div>
+    </div>
 
-        try {
-            $query = "SELECT * FROM buku ORDER BY ID_Buku ASC";
-            $result = $conn->query($query);
+    <!-- Tabel -->
+    <div class="card-body">
+        <table class="table table-striped table-hover table-bordered" id="datatable" width="100%" cellspacing="0">
+            <thead class="table-primary">
+                <tr>
+                    <th><i class="fas fa-id-card"></i> ID</th>
+                    <th><i class="fas fa-user"></i> Nama</th>
+                    <th><i class="fas fa-envelope"></i> Email</th>
+                    <th><i class="fas fa-tools"></i> Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if ($conn->connect_error) {
+                    echo "<tr><td colspan='4' class='text-center text-danger'>Koneksi ke database gagal: " . $conn->connect_error . "</td></tr>";
+                } else {
+                    $query = "SELECT * FROM anggota ORDER BY ID_Anggota ASC";
+                    $result = $conn->query($query);
 
-            if (!$result) {
-                throw new Exception("Query error: " . $conn->error);
-            }
-
-            if ($result->num_rows > 0) {
-                while ($data = $result->fetch_assoc()) {
-                    $ID_Buku = htmlspecialchars($data['ID_Buku'] ?? '', ENT_QUOTES, 'UTF-8');
-                    $Judul = htmlspecialchars($data['Judul'] ?? '', ENT_QUOTES, 'UTF-8');
-                    $Penulis = htmlspecialchars($data['Penulis'] ?? '', ENT_QUOTES, 'UTF-8');
-                    $Penerbit = htmlspecialchars($data['Penerbit'] ?? '', ENT_QUOTES, 'UTF-8');
-                    $Tahun_Terbit = htmlspecialchars($data['Tahun_Terbit'] ?? '', ENT_QUOTES, 'UTF-8');
-                    $Stok = htmlspecialchars($data['Stok'] ?? '', ENT_QUOTES, 'UTF-8');
-                    $Deskripsi = htmlspecialchars($data['Deskripsi'] ?? '', ENT_QUOTES, 'UTF-8');
-        ?>
-                    <tr>
-                        <td><?= $ID_Buku ?></td>
-                        <td><?= $Judul ?></td>
-                        <td><?= $Penulis ?></td>
-                        <td><?= $Penerbit ?></td>
-                        <td><?= $Tahun_Terbit ?></td>
-                        <td><?= $Stok ?></td>
-                        <td><?= $Deskripsi ?></td>
-                        <td>
-                            <form method="POST" action="delete_buku.php" style="display:inline;">
-                                <input type="hidden" name="id_buku" value="<?= $ID_Buku ?>">
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
-        <?php
+                    if ($result && $result->num_rows > 0) {
+                        while ($data = $result->fetch_assoc()) {
+                            $ID_Anggota = htmlspecialchars($data['ID_Anggota'], ENT_QUOTES, 'UTF-8');
+                            $Nama = htmlspecialchars($data['Nama'], ENT_QUOTES, 'UTF-8');
+                            $Email = htmlspecialchars($data['Email'], ENT_QUOTES, 'UTF-8');
+                ?>
+                            <tr>
+                                <td><?= $ID_Anggota ?></td>
+                                <td><?= $Nama ?></td>
+                                <td><?= $Email ?></td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#editModal<?= $ID_Anggota ?>"
+                                        title="Edit user ini">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <form method="POST" action="delete_anggota.php" style="display:inline;">
+                                        <input type="hidden" name="id_anggota" value="<?= $ID_Anggota ?>">
+                                        <button type="submit" class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                                            <i class="fas fa-trash"></i> Hapus
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                <?php
+                        }
+                    } else {
+                        echo "<tr><td colspan='4' class='text-center'>Tidak ada data anggota yang tersedia</td></tr>";
+                    }
                 }
-            } else {
-                echo "<tr><td colspan='8' class='text-center'>Tidak ada data buku yang tersedia</td></tr>";
-            }
-        } catch (Exception $e) {
-            echo "<tr><td colspan='8' class='text-center text-danger'>Terjadi kesalahan: " . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8') . "</td></tr>";
-            error_log("Database Error: " . $e->getMessage());
-        }
-
-        if (isset($result) && $result instanceof mysqli_result) {
-            $result->free();
-        }
-        ?>
-        </tbody>
-    </table>
+                ?>
+            </tbody>
+        </table>
+    </div>
 </div>
+
+<!-- Modal Edit User -->
+<?php
+if ($result && $result->num_rows > 0) {
+    $result->data_seek(0); // Reset pointer hasil query
+    while ($data = $result->fetch_assoc()) {
+        $ID_Anggota = htmlspecialchars($data['ID_Anggota'], ENT_QUOTES, 'UTF-8');
+?>
+        <div class="modal fade" id="editModal<?= $ID_Anggota ?>" tabindex="-1" aria-labelledby="editModalLabel<?= $ID_Anggota ?>" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel<?= $ID_Anggota ?>">Edit User</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="post" action="control/edit_user.php">
+                        <div class="modal-body">
+                            <div class="row g-3">
+                                <input type="hidden" name="ID_Anggota" value="<?= $ID_Anggota ?>">
+                                <div class="col-12">
+                                    <label for="Nama<?= $ID_Anggota ?>" class="form-label">Nama</label>
+                                    <input type="text" class="form-control" id="Nama<?= $ID_Anggota ?>"
+                                        name="Nama" value="<?= htmlspecialchars($data['Nama']) ?>" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="Email<?= $ID_Anggota ?>" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="Email<?= $ID_Anggota ?>"
+                                        name="Email" value="<?= htmlspecialchars($data['Email']) ?>" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="Username<?= $ID_Anggota ?>" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="Username<?= $ID_Anggota ?>"
+                                        name="Username" value="<?= htmlspecialchars($data['Username']) ?>" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="Password<?= $ID_Anggota ?>" class="form-label">Password (Kosongkan jika tidak diubah)</label>
+                                    <input type="password" class="form-control" id="Password<?= $ID_Anggota ?>" name="Password">
+                                </div>
+                                <div class="col-12">
+                                    <label for="Alamat<?= $ID_Anggota ?>" class="form-label">Alamat</label>
+                                    <textarea class="form-control" id="Alamat<?= $ID_Anggota ?>"
+                                        name="Alamat" required><?= htmlspecialchars($data['Alamat']) ?></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <label for="No_Telepon<?= $id ?>" class="form-label">No. Telepon</label>
+                                    <input type="text" class="form-control" id="No_Telepon<?= $id ?>"
+                                        name="No_Telepon" value="<?= htmlspecialchars($data['No_Telepon']) ?>" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="Tipe<?= $id ?>" class="form-label">Tipe</label>
+                                    <select class="form-select" id="Tipe<?= $id ?>" name="Tipe" required>
+                                        <option value="Mahasiswa" <?= ($data['Tipe'] == 'Mahasiswa') ? 'selected' : '' ?>>Mahasiswa</option>
+                                        <option value="Dosen" <?= ($data['Tipe'] == 'Dosen') ? 'selected' : '' ?>>Dosen</option>
+                                        <option value="Pengunjung" <?= ($data['Tipe'] == 'Pengunjung') ? 'selected' : '' ?>>Pengunjung</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="Status<?= $id ?>" class="form-label">Status</label>
+                                    <select class="form-select" id="Status<?= $id ?>" name="Status" required>
+                                        <option value="Aktif" <?= ($data['Status'] == 'Aktif') ? 'selected' : '' ?>>Aktif</option>
+                                        <option value="Nonaktif" <?= ($data['Status'] == 'Nonaktif') ? 'selected' : '' ?>>Nonaktif</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary" name="edituser">Simpan Perubahan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+<?php
+    }
+}
+?>
