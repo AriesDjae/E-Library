@@ -17,7 +17,7 @@
     </div>
 
     <!-- Grafik Aktivitas User -->
-    <div class="col-xl-6">
+    <div class="col-xl-12">
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-chart-bar me-1"></i>

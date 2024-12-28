@@ -15,37 +15,30 @@
         </div>
     </div>
 
-    <!-- Grafik -->
-    <!-- <div class="row">
-        <div class="col-xl-6">
+    <!-- Grafik Aktivitas Reservasi -->
+
+        <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-chart-bar me-1"></i>
-                    Aktivitas User
+                    Aktivitas Reservasi
                 </div>
                 <div class="card-body">
-                    <canvas id="myAreaChart" width="100%" height="40"></canvas>
+                    <div class="table-responsive">
+                        <canvas id="myAreaChart" width="100%" height="50"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-6">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-chart-bar me-1"></i>
-                    Chart Peminjaman Buku
-                </div>
-                <div class="card-body">
-                    <canvas id="myBarChart" width="100%" height="40"></canvas>
-                </div>
-            </div>
-        </div>
-    </div> -->
+
 
     <!-- Tabel -->
     <div class="card mb-4">
         <div class="card-header">
-        <h5 class="m-0 font-weight-bold text-dark">Daftar Reservasi</h5>
+            <h5 class="m-0 font-weight-bold text-dark">Aktivitas Reservasi</h5>
         </div>
+
+
         <div class="card-body">
             <table class="table table-striped table-hover table-bordered" id="datatable" width="100%" cellspacing="0">
                 <thead class="table-primary">
