@@ -1,2 +1,2 @@
 # E-Library
-Aplikasi penunjang matakuliah
+Aplikasi penunjang matakuliah informatika
