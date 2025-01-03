@@ -147,3 +147,120 @@ CREATE TABLE contact_messages (
     created_at DATETIME NOT NULL,
     INDEX idx_created_at (created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Tambahkan ruangan secara otomatis
+INSERT IGNORE INTO `reading_room` (`Nama_Ruang`, `Kapasitas`, `Status`)
+VALUES
+('Ruang Baca 1', 10, 'Tersedia'),
+('Ruang Baca 2', 10, 'Tersedia'),
+('Ruang Baca 3', 10, 'Tersedia'),
+('Ruang Baca 4', 10, 'Tersedia'),
+('Ruang Baca 5', 10, 'Tersedia'),
+('Ruang Baca 6', 10, 'Tersedia'),
+('Ruang Baca 7', 10, 'Tersedia'),
+('Ruang Baca 8', 10, 'Tersedia'),
+('Ruang Baca 9', 10, 'Tersedia'),
+('Ruang Baca 10', 10, 'Tersedia');
+
+-- Tambahkan kategori jika belum ada
+INSERT INTO kategori (ID_Kategori, Nama_Kategori)
+SELECT 1, 'Fiksi' WHERE NOT EXISTS (SELECT 1 FROM kategori WHERE ID_Kategori = 1);
+INSERT INTO kategori (ID_Kategori, Nama_Kategori)
+SELECT 2, 'Sastra dan Pengetahuan' WHERE NOT EXISTS (SELECT 1 FROM kategori WHERE ID_Kategori = 2);
+
+-- Menambahkan buku kategori 1 (Fiksi)
+INSERT INTO buku (ID_Kategori, Penulis, Judul, Penerbit, Tahun_Terbit, Lokasi_Rak, Stok, Deskripsi, Cover_Image)
+SELECT 1, 'Tere Liye', 'Bulan', 'PENERBIT SABAK GRIP', 2022, 'Rak A1', 10, 
+'Petualangan Raib, Seli, dan Ali berlanjut. Beberapa bulan setelah peristiwa klan bulan, Miss Selena akhirnya muncul di sekolah. Ia membawa kabar menggembirakan untuk anak-anak yang berjiwa petualang seperti Raib, Seli, dan Ali.',
+'bulan.jpg'
+WHERE NOT EXISTS (SELECT 1 FROM buku WHERE Judul = 'Bulan');
+
+-- Menambahkan buku kategori 1 (Fiksi)
+INSERT INTO buku 
+(ID_Kategori, Penulis, Judul, Penerbit, Tahun_Terbit, Lokasi_Rak, Stok, Deskripsi, Cover_Image)
+SELECT 1, 'Tere Liye', 'Matahari', 'PENERBIT SABAK GRIP', 2022, 'Rak A1', 10, 
+'Namanya Ali, 15 tahun, kelas X. Jika saja orangtuanya mengizinkan, seharusnya dia sudah duduk di tingkat akhir ilmu fisika program doktor di universitas ternama.',
+'matahari.jpg'
+WHERE NOT EXISTS (SELECT 1 FROM buku WHERE Judul = 'Matahari');
+
+-- Menambahkan buku kategori 1 (Fiksi)
+INSERT INTO buku 
+(ID_Kategori, Penulis, Judul, Penerbit, Tahun_Terbit, Lokasi_Rak, Stok, Deskripsi, Cover_Image)
+SELECT 1, 'Tere Liye', 'Bintang', 'PENERBIT SABAK GRIP', 2023, 'Rak A2', 5, 
+'Bintang adalah buku keempat dari serial Bumi yang ditulis oleh Tere Liye. Tere Liye ialah nama pena dari seorang penulis novel tersohor di Indonesia. Novel Bintang menceritakan tentang Raib, Seli, dan Ali, mereka adalah murid SMA kelas 11 dan berteman baik. Penampilan mereka sama seperti para murid SMA lainnya, tetapi siapa sangka bahwa mereka memiliki dan menyimpan banyak rahasia besar.
+
+Raib, seorang remaja pada umumnya, tetapi tanpa disangka merupakan seorang putri keturunan dari klan Bulan, memiliki kekuatan menghilang dalam sekejap. Kemudian, Seli adalah seorang remaja berasal dari klan Matahari yang berada di Bumi sebab mamanya yang berasal dari Matahari turun dan menetap di Bumi. Ia mempunyai kemampuan dapat mengeluarkan petir.',
+'bintang.jpg'
+WHERE NOT EXISTS (SELECT 1 FROM buku WHERE Judul = 'Bintang');
+
+-- Menambahkan buku kategori 1 (Fiksi)
+INSERT INTO buku 
+(ID_Kategori, Penulis, Judul, Penerbit, Tahun_Terbit, Lokasi_Rak, Stok, Deskripsi, Cover_Image)
+SELECT 1, 'J.K. Rowling', 'Harry Potter And The Half-Blood Prince – Slytherin Edition', 
+'BLOOMSBURY UK', 2021, 'Rak B1', 7, 
+'It is the middle of the summer, but there is an unseasonal mist pressing against the windowpanes. Harry Potter is waiting nervously in his bedroom at the Dursleys\' house in Privet Drive for a visit from Professor Dumbledore himself. One of the last times he saw the Headmaster, he was in a fierce one-to-one duel with Lord Voldemort, and Harry can\'t quite believe that Professor Dumbledore will actually appear at the Dursleys\' of all places. Why is the Professor coming to visit him now? What is it that cannot wait until Harry returns to Hogwarts in a few weeks\' time? Harry\'s sixth year at Hogwarts has already got off to an unusual start, as the worlds of Muggle and magic start to intertwine...',
+'halfblood.jpg'
+WHERE NOT EXISTS (SELECT 1 FROM buku WHERE Judul = 'Harry Potter And The Half-Blood Prince – Slytherin Edition');
+
+-- Menambahkan buku kategori 2 (Sastra dan Pengetahuan)
+INSERT INTO buku 
+(ID_Kategori, Penulis, Judul, Penerbit, Tahun_Terbit, Lokasi_Rak, Stok, Deskripsi, Cover_Image)
+SELECT 2, 'YeaRimDang', 'Why? Sci-Tech: Internet of Things dan Geometri', 'Elex Media Komputindo', 2024, 'Rak B2', 15, 
+'Di sebuah dunia ajaib, di mana semua benda terhubung...',
+'why.jpg'
+WHERE NOT EXISTS (SELECT 1 FROM buku WHERE Judul = 'Why? Sci-Tech: Internet of Things dan Geometri');
+
+-- Pastikan kolom Username di tabel anggota unik
+ALTER TABLE `anggota` 
+ADD UNIQUE (`Username`);
+
+-- Langkah 1: Drop Foreign Key pada tabel peminjaman
+ALTER TABLE `peminjaman`
+DROP FOREIGN KEY `FK_Anggota_Peminjaman`;
+
+-- Langkah 2: Tambahkan kolom Username pada tabel peminjaman
+ALTER TABLE `peminjaman`
+ADD COLUMN `Username` VARCHAR(100) NOT NULL AFTER `ID_Peminjaman`;
+
+-- Langkah 3: Update data pada kolom Username berdasarkan ID_Anggota
+UPDATE `peminjaman` p
+JOIN `anggota` a ON p.ID_Anggota = a.ID_Anggota
+SET p.Username = a.Username;
+
+-- Langkah 4: Hapus kolom ID_Anggota dari tabel peminjaman
+ALTER TABLE `peminjaman`
+DROP COLUMN `ID_Anggota`;
+
+-- Langkah 5: Tambahkan Foreign Key baru untuk Username pada tabel peminjaman
+ALTER TABLE `peminjaman`
+ADD FOREIGN KEY (`Username`) REFERENCES `anggota` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Langkah 6: Drop Foreign Key pada tabel reading_room_booking
+ALTER TABLE `reading_room_booking`
+DROP FOREIGN KEY `FK_User_Booking`;
+
+-- Langkah 7: Tambahkan kolom Username pada tabel reading_room_booking
+ALTER TABLE `reading_room_booking`
+ADD COLUMN `Username` VARCHAR(100) NOT NULL AFTER `ID_Room`;
+
+-- Langkah 8: Update data pada kolom Username berdasarkan ID_Anggota
+UPDATE `reading_room_booking` rb
+JOIN `anggota` a ON rb.ID_Anggota = a.ID_Anggota
+SET rb.Username = a.Username;
+
+-- Langkah 9: Hapus kolom ID_Anggota dari tabel reading_room_booking
+ALTER TABLE `reading_room_booking`
+DROP COLUMN `ID_Anggota`;
+
+-- Langkah 10: Tambahkan Foreign Key baru untuk Username pada tabel reading_room_booking
+ALTER TABLE `reading_room_booking`
+ADD FOREIGN KEY (`Username`) REFERENCES `anggota` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Langkah 11: Tambahkan indeks untuk kolom Username pada tabel anggota untuk optimasi pencarian
+CREATE INDEX idx_username ON anggota (Username);
+
+-- Validasi: Periksa struktur tabel dan data
+DESCRIBE `peminjaman`;
+DESCRIBE `reading_room_booking`;
+SELECT * FROM `peminjaman` LIMIT 5;
+SELECT * FROM `reading_room_booking` LIMIT 5;
